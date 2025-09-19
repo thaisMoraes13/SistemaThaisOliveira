@@ -16,6 +16,8 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
     public Tam_JDlgProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         setLocationRelativeTo(null);
+        setTitle("Cadastro de Produto");
     }
 
     /**

@@ -16,6 +16,8 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
     public Tam_JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         setLocationRelativeTo(null);
+        setTitle("Cadastro de Vendedor");
     }
 
     /**

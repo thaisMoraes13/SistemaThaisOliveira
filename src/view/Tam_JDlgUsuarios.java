@@ -16,6 +16,8 @@ public class Tam_JDlgUsuarios extends javax.swing.JDialog {
     public Tam_JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Cadastro de Usuários");
     }
 
     /**
