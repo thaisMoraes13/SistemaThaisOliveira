@@ -384,7 +384,7 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
 
     private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.mensagem("Não implementado.");
+         Tam_Util.mensagem(null);
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
 
     /**

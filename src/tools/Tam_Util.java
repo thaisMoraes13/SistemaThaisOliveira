@@ -10,6 +10,10 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import view.JDlgTam_ClientePesquisar;
+import view.JDlgTam_ProdutoPesquisar;
+import view.JDlgTam_UsuariosPesquisar;
+import view.JDlgTam_VendasPesquisar;
+import view.JDlgTam_VendedorPesquisar;
 
 /**
  *
