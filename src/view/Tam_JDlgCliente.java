@@ -5,6 +5,8 @@
 package view;
 import tools.Tam_Util;
 
+
+
 /**
  *
  * @author u07431666128
@@ -370,7 +372,8 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
 
     private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.mensagem("Não implementado.");
+         
+         Tam_Util.mensagem(null);
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
 
     /**

@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import view.JDlgTam_ClientePesquisar;
 
 /**
  *
@@ -43,7 +44,9 @@ public class Tam_Util {
     }
     }
     public static void mensagem(String cad) {
-        JOptionPane.showConfirmDialog(null, cad);
+         JDlgTam_ClientePesquisar tela = new JDlgTam_ClientePesquisar(null, true);
+    tela.setLocationRelativeTo(null); 
+    tela.setVisible(true);     
     }
     
     public static boolean perguntar(String cad) {
