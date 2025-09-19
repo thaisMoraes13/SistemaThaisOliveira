@@ -149,7 +149,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
 
     private void jMnuTam_VendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_VendedorActionPerformed
         // TODO add your handling code here:
-        Tam_JDlgVendedor jDlgVendedor = new Tam_JDlgVendedor(this,true);
+        JDlgTam_VendedorPesquisar jDlgVendedor = new JDlgTam_VendedorPesquisar(this,true);
         jDlgVendedor.setVisible(true);
     }//GEN-LAST:event_jMnuTam_VendedorActionPerformed
 

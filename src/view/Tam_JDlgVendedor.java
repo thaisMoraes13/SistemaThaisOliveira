@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
+import tools.Tam_Util;
 /**
  *
  * @author u07431666128
@@ -11,13 +11,18 @@ package view;
 public class Tam_JDlgVendedor extends javax.swing.JDialog {
 
     /**
-     * Creates new form Tam_JDlgVendedor
+     * Creates new form JDlgTam_VendedorPesquisar
      */
     public Tam_JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
+         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
+                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
+                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, jTxtTam_Celular, 
+                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                 jBtnTam_Confirmar, jBtnTam_Cancelar);
     }
 
     /**
@@ -29,21 +34,358 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTxtTam_Codigo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtTam_Nome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jFmtTam_Cpf = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jFmtTam_Rg = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jFmtTam_DataNascimento = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jCboTam_Sexo = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jTxtTam_Email = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTxtTam_Cidade = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTxtTam_Endereco = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTxtTam_Bairro = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTxtTam_Cep = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTxtTam_Celular = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTxtTam_Cnpj = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTxtTam_Nacionalidade = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jCboTam_Escolaridade = new javax.swing.JComboBox<>();
+        jBtnTam_Incluir = new javax.swing.JButton();
+        jBtnTam_Alterar = new javax.swing.JButton();
+        jBtnTam_Excluir = new javax.swing.JButton();
+        jBtnTam_Confirmar = new javax.swing.JButton();
+        jBtnTam_Cancelar = new javax.swing.JButton();
+        jBtnTam_Pesquisar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Código");
+
+        jLabel2.setText("Nome");
+
+        jLabel3.setText("CPF");
+
+        jLabel4.setText("RG");
+
+        jLabel5.setText("Data de Nascimento");
+
+        jLabel6.setText("Sexo");
+
+        jCboTam_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "masculino", "feminino", "diádico", "intersexo ", "altersexo" }));
+
+        jLabel7.setText("E-mail");
+
+        jLabel8.setText("Cidade");
+
+        jLabel9.setText("Endereço");
+
+        jLabel10.setText("Bairro");
+
+        jLabel11.setText("CEP");
+
+        jLabel12.setText("Celular");
+
+        jLabel13.setText("CNPJ");
+
+        jLabel14.setText("Nacionalidade");
+
+        jLabel15.setText("Escolaridade");
+
+        jCboTam_Escolaridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ensino Fundamental Incompleto", "Ensino Fundamental Completo", "Ensino Médio Incompleto", "Ensino Médio Completo", "Educação Técnica", "Superior Incompleto", "Superior Completo", "Especialização", "Mestrado", "Doutorado" }));
+
+        jBtnTam_Incluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluirr.png"))); // NOI18N
+        jBtnTam_Incluir.setText("Incluir");
+        jBtnTam_Incluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_IncluirActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterarr (1).png"))); // NOI18N
+        jBtnTam_Alterar.setText("Alterar");
+        jBtnTam_Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_AlterarActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluirr.png"))); // NOI18N
+        jBtnTam_Excluir.setText("Excluir");
+        jBtnTam_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_ExcluirActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Confirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmarr.png"))); // NOI18N
+        jBtnTam_Confirmar.setText("Confirmar");
+        jBtnTam_Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_ConfirmarActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caneclarr.png"))); // NOI18N
+        jBtnTam_Cancelar.setText("Cancelar");
+        jBtnTam_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_CancelarActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisarr.png"))); // NOI18N
+        jBtnTam_Pesquisar.setText("Pesquisar");
+        jBtnTam_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_PesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(27, 27, 27)
+                                                .addComponent(jLabel10)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTxtTam_Bairro))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(jFmtTam_Cpf))
+                                        .addGap(97, 97, 97)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTxtTam_Email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addGap(63, 63, 63)
+                                                .addComponent(jLabel6))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(jLabel8)))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(jLabel11))
+                                                    .addComponent(jCboTam_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(jLabel12)))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel13)
+                                                    .addComponent(jTxtTam_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTxtTam_Cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(41, 41, 41))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jCboTam_Escolaridade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(293, 293, 293))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtnTam_Incluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Confirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Pesquisar)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFmtTam_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCboTam_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtTam_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTam_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTam_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTam_Cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCboTam_Escolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnTam_Incluir)
+                    .addComponent(jBtnTam_Alterar)
+                    .addComponent(jBtnTam_Excluir)
+                    .addComponent(jBtnTam_Confirmar)
+                    .addComponent(jBtnTam_Cancelar)
+                    .addComponent(jBtnTam_Pesquisar))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
+        // TODO add your handling code here:
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
+                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
+                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
+                 jTxtTam_Celular, 
+                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                 jBtnTam_Confirmar, jBtnTam_Cancelar );
+         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, 
+                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+
+    }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
+
+    private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
+        // TODO add your handling code here:
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
+                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
+                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
+                 jTxtTam_Celular, 
+                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                 jBtnTam_Confirmar, jBtnTam_Cancelar );
+         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, 
+                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+    }//GEN-LAST:event_jBtnTam_AlterarActionPerformed
+
+    private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
+        // TODO add your handling code here:
+         Tam_Util.perguntar("Deseja excluir o registro");
+    }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
+
+    private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
+        // TODO add your handling code here:
+         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
+                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
+                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
+                 jTxtTam_Celular, 
+                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                 jBtnTam_Confirmar, jBtnTam_Cancelar );
+         Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, 
+                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+    }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
+
+    private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
+        // TODO add your handling code here:
+         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
+                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
+                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
+                 jTxtTam_Celular, 
+                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                 jBtnTam_Confirmar, jBtnTam_Cancelar );
+           Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
+                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
+                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
+                 jTxtTam_Celular, 
+                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
+    }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
+
+    private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
+        // TODO add your handling code here:
+         Tam_Util.mensagem("Não implementado.");
+    }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,6 +413,9 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Tam_JDlgVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -88,5 +433,41 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnTam_Alterar;
+    private javax.swing.JButton jBtnTam_Cancelar;
+    private javax.swing.JButton jBtnTam_Confirmar;
+    private javax.swing.JButton jBtnTam_Excluir;
+    private javax.swing.JButton jBtnTam_Incluir;
+    private javax.swing.JButton jBtnTam_Pesquisar;
+    private javax.swing.JComboBox<String> jCboTam_Escolaridade;
+    private javax.swing.JComboBox<String> jCboTam_Sexo;
+    private javax.swing.JFormattedTextField jFmtTam_Cpf;
+    private javax.swing.JFormattedTextField jFmtTam_DataNascimento;
+    private javax.swing.JFormattedTextField jFmtTam_Rg;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTxtTam_Bairro;
+    private javax.swing.JTextField jTxtTam_Celular;
+    private javax.swing.JTextField jTxtTam_Cep;
+    private javax.swing.JTextField jTxtTam_Cidade;
+    private javax.swing.JTextField jTxtTam_Cnpj;
+    private javax.swing.JTextField jTxtTam_Codigo;
+    private javax.swing.JTextField jTxtTam_Email;
+    private javax.swing.JTextField jTxtTam_Endereco;
+    private javax.swing.JTextField jTxtTam_Nacionalidade;
+    private javax.swing.JTextField jTxtTam_Nome;
     // End of variables declaration//GEN-END:variables
 }

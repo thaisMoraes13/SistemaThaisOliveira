@@ -128,7 +128,7 @@
                               <Component id="jBtnTam_Pesquisar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -201,7 +201,7 @@
                   <Component id="jCboTam_EstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTxtTam_Profissao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="55" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBtnTam_Incluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBtnTam_Alterar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -266,11 +266,12 @@
     <Component class="javax.swing.JComboBox" name="jCboTam_Sexo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="5">
+            <StringItem index="0" value="masculino"/>
+            <StringItem index="1" value="feminino"/>
+            <StringItem index="2" value="di&#xe1;dico"/>
+            <StringItem index="3" value="intersexo "/>
+            <StringItem index="4" value="altersexo"/>
           </StringArray>
         </Property>
       </Properties>
@@ -326,11 +327,12 @@
     <Component class="javax.swing.JComboBox" name="jCboTam_EstadoCivil">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="5">
+            <StringItem index="0" value="Solteiro"/>
+            <StringItem index="1" value="Casado"/>
+            <StringItem index="2" value="Separado "/>
+            <StringItem index="3" value="Divorciado"/>
+            <StringItem index="4" value="Vi&#xfa;vo"/>
           </StringArray>
         </Property>
       </Properties>
@@ -347,6 +349,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnTam_Incluir">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img/incluirr.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Incluir"/>
       </Properties>
       <Events>
@@ -355,6 +360,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnTam_Alterar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img/alterarr (1).png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
       <Events>
@@ -363,6 +371,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnTam_Excluir">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img/excluirr.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
       <Events>
@@ -371,6 +382,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnTam_Confirmar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img/confirmarr.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
       <Events>
@@ -379,6 +393,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnTam_Cancelar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img/caneclarr.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
@@ -387,6 +404,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnTam_Pesquisar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/img/pesquisarr.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
       </Properties>
       <Events>

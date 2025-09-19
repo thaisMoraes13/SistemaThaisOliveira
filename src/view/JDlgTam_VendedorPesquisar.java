@@ -11,11 +11,13 @@ package view;
 public class JDlgTam_VendedorPesquisar extends javax.swing.JDialog {
 
     /**
-     * Creates new form JDlgTam_VendedorPesquisar
+     * Creates new form Tam_JDlgVendedor
      */
     public JDlgTam_VendedorPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         setLocationRelativeTo(null);
+        setTitle("Cadastro de Vendedor");
     }
 
     /**
@@ -68,6 +70,7 @@ public class JDlgTam_VendedorPesquisar extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JDlgTam_VendedorPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */

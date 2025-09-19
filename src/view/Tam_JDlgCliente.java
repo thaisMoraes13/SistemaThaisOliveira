@@ -91,7 +91,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
 
         jLabel7.setText("Sexo");
 
-        jCboTam_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCboTam_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "masculino", "feminino", "diádico", "intersexo ", "altersexo" }));
 
         jLabel8.setText("Cidade");
 
@@ -107,10 +107,11 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
 
         jLabel14.setText("Estado Civil");
 
-        jCboTam_EstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCboTam_EstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado", "Separado ", "Divorciado", "Viúvo" }));
 
         jLabel15.setText("Profissão");
 
+        jBtnTam_Incluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluirr.png"))); // NOI18N
         jBtnTam_Incluir.setText("Incluir");
         jBtnTam_Incluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +119,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
+        jBtnTam_Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterarr (1).png"))); // NOI18N
         jBtnTam_Alterar.setText("Alterar");
         jBtnTam_Alterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +127,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
+        jBtnTam_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluirr.png"))); // NOI18N
         jBtnTam_Excluir.setText("Excluir");
         jBtnTam_Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +135,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
+        jBtnTam_Confirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmarr.png"))); // NOI18N
         jBtnTam_Confirmar.setText("Confirmar");
         jBtnTam_Confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +143,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
+        jBtnTam_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caneclarr.png"))); // NOI18N
         jBtnTam_Cancelar.setText("Cancelar");
         jBtnTam_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +151,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
             }
         });
 
+        jBtnTam_Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisarr.png"))); // NOI18N
         jBtnTam_Pesquisar.setText("Pesquisar");
         jBtnTam_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +240,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
                                 .addComponent(jBtnTam_Cancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBtnTam_Pesquisar)))
-                        .addGap(0, 23, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +299,7 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCboTam_EstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtTam_Profissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnTam_Incluir)
                     .addComponent(jBtnTam_Alterar)
