@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.util.List;
+
 /**
  *
  * @author u07431666128
@@ -16,6 +18,12 @@ public class JDlgTam_UsuariosPesquisar extends javax.swing.JDialog {
     public JDlgTam_UsuariosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         setTitle("Pesquisar Usuários");
+        Tam_ontrollerUsuarios = new ControllerUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = (List) usuariosDAO.listAll();
+        Tam_ontrollerUsuarios.setList(lista);
+        jTable1.setModel(Tam_ontrollerUsuarios);
     }
 
     /**
