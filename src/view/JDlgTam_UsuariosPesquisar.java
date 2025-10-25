@@ -4,7 +4,10 @@
  */
 package view;
 
+import bean.UsuariosTam;
+import dao.UsuariosDAO;
 import java.util.List;
+import tools.Tam_Util;
 
 /**
  *
@@ -15,15 +18,23 @@ public class JDlgTam_UsuariosPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgTam_UsuariosPesquisar
      */
+    private Tam_JDlgUsuarios tam_jDlgUsuarios;
+    Tam_ControllerUsuarios tam_controllerUsuarios;
+    private boolean ok = false;
+
     public JDlgTam_UsuariosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setTitle("Pesquisar Usuários");
-        Tam_ontrollerUsuarios = new ControllerUsuarios();
+        setLocationRelativeTo(null);
+        setTitle("Pesquisar Usuários");
+        tam_controllerUsuarios = new Tam_ControllerUsuarios();
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         List lista = (List) usuariosDAO.listAll();
-        Tam_ontrollerUsuarios.setList(lista);
-        jTable1.setModel(Tam_ontrollerUsuarios);
+        tam_controllerUsuarios.setList(lista);
+        jTable1.setModel(tam_controllerUsuarios);
+    }
+   public void setTelaAnterior(Tam_JDlgUsuarios tam_jDlgUsuarios) {;
+        this.tam_jDlgUsuarios = tam_jDlgUsuarios;
     }
 
     /**
@@ -37,6 +48,7 @@ public class JDlgTam_UsuariosPesquisar extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -53,25 +65,47 @@ public class JDlgTam_UsuariosPesquisar extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setText("ok");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                
+        UsuariosTam usuarios =  tam_controllerUsuarios.getBean( jTable1.getSelectedRow() );
+        tam_jDlgUsuarios.beanView(usuarios);
+        this.setVisible(false);
+        
+            
+     
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,6 +150,7 @@ public class JDlgTam_UsuariosPesquisar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

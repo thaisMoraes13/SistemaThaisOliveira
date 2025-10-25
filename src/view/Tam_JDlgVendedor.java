@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
 import tools.Tam_Util;
+
 /**
  *
  * @author u07431666128
@@ -18,11 +20,11 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, jTxtTam_Celular,
+                jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
     }
 
     /**
@@ -327,64 +329,64 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
 
     private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, 
-                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular,
+                jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar,
+                jBtnTam_Excluir, jBtnTam_Pesquisar);
 
     }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
 
     private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, 
-                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular,
+                jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar,
+                jBtnTam_Excluir, jBtnTam_Pesquisar);
     }//GEN-LAST:event_jBtnTam_AlterarActionPerformed
 
     private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
         // TODO add your handling code here:
-         Tam_Util.perguntar("Deseja excluir o registro");
+        Tam_Util.perguntar("Deseja excluir o registro");
     }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
 
     private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-         Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, 
-                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular,
+                jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar,
+                jBtnTam_Excluir, jBtnTam_Pesquisar);
     }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
 
     private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-           Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular,
+                jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular,
+                jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
     }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
 
     private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.mensagem(null);
+        Tam_Util.mensagem(null);
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
 
     /**
