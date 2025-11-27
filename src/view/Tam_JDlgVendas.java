@@ -321,7 +321,9 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         jTxtTam_Total.setText(Tam_Util.doubleToString(vendas.getTotal_tam()));
         jCbxCliente_Tam.setSelectedItem(vendas.getClienteTam());
         jCbxVendedor_Tam.setSelectedItem(vendas.getVendedorTam());
+        
 
+        
         VendasProdutosDAO dao = new VendasProdutosDAO();
         List lista = (List) dao.listProdutos(vendas);
         tam_ControllerVendasProdutos.setList(lista);
@@ -365,6 +367,9 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                     jCbxVendedor_Tam,
                     jTxtTam_Total
             );
+        Tam_Util.habilitar(false,  jBtnTam_Confirmar,  jBtnTam_Cancelar , jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Incluir, jBtnTam_Pesquisar );
+       
         tam_ControllerVendasProdutos.setList(new ArrayList());
     }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
 
@@ -421,11 +426,16 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
     private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
         // TODO add your handling code here:
 
-//        Tam_Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jBtnTam_Cancelar, jBtnTam_Confirmar,
-//                jCboTam_Nivel, jChbTam_Ativo, jFmtTam_Cpf, jFmtTam_DataDeNascimento, jPwdTam_Senha, jTxtTam_Apelido);
-//        Tam_Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
-//        Tam_Tam_Util.limpar(jTxtTam_Codigo, jCboTam_Nivel, jChbTam_Ativo, jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataDeNascimento, jPwdTam_Senha, jTxtTam_Apelido);
-//        
+        Tam_Util.limpar(
+                    jTxtTam_Codigo,
+                    jFmtDataVenda_Tam,
+                    jCbxCliente_Tam,
+                    jCbxVendedor_Tam,
+                    jTxtTam_Total
+            );
+        Tam_Util.habilitar(false,jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam,  jBtnTam_Confirmar,  jBtnTam_Cancelar , jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.habilitar(true,  jBtnTam_Incluir, jBtnTam_Pesquisar );
+         
         tam_ControllerVendasProdutos.setList(new ArrayList());
     }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
 

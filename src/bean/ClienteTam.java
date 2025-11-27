@@ -201,5 +201,14 @@ public class ClienteTam implements java.io.Serializable {
     public String toString() {
         return this.nomeTam;
     }
-
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof ClienteTam) {
+            ClienteTam clienteTam = (ClienteTam) object;
+            if (clienteTam.getIdclienteTam()== this.getIdclienteTam()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

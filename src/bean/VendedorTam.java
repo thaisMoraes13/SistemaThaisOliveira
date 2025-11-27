@@ -212,7 +212,16 @@ public class VendedorTam  implements java.io.Serializable {
     public String toString() {
         return this.nomeTam;
     }
-
+   @Override
+    public boolean equals(Object object) {
+        if (object instanceof VendedorTam) {
+            VendedorTam vendedor = (VendedorTam) object;
+            if (vendedor.getIdvendedorTam()== this.getIdvendedorTam()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
