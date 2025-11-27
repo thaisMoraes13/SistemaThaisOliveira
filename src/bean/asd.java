@@ -7,8 +7,8 @@ package bean;
 
 /**
  *
- * @author u07431666128
+ * @author user
  */
-public class Tam_Vendedor {
+public class asd {
     
 }

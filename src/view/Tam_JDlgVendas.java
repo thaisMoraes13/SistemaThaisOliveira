@@ -4,20 +4,70 @@
  */
 package view;
 
+import bean.ClienteTam;
+import bean.UsuariosTam;
+import bean.VendasProdutosTam;
+import bean.VendasTam;
+import bean.VendedorTam;
+import dao.ClientesDAO;
+import dao.UsuariosDAO;
+import dao.VendasDAO;
+import dao.VendasProdutosDAO;
+import dao.VendedorDAO;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import tools.Tam_Util;
+
 /**
  *
  * @author u07431666128
  */
 public class Tam_JDlgVendas extends javax.swing.JDialog {
 
+    Tam_ControllerVendasProdutos tam_ControllerVendasProdutos;
+    boolean incluir;
+
     /**
-     * Creates new form Tam_JDlgVendas
+     * Creates new form Tam_JDlgUsuarios
      */
     public Tam_JDlgVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
-        setTitle("Vendas");
+        setLocationRelativeTo(null);
+        setTitle("Cadastro de Usuários");
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam,
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir);
+        jCbxCliente_Tam.removeAllItems();
+
+        ClientesDAO clienteTam = new ClientesDAO();
+        ArrayList listaC = (ArrayList) clienteTam.listAll();
+        for (Object object : listaC) {
+            jCbxCliente_Tam.addItem((ClienteTam) object);
+        }
+
+        jCbxVendedor_Tam.removeAllItems();
+        VendedorDAO vendedorDAOTam = new VendedorDAO();
+        ArrayList listaV = (ArrayList) vendedorDAOTam.listAll();
+        for (Object object : listaV) {
+            jCbxVendedor_Tam.addItem((VendedorTam) object);
+        }
+
+        tam_ControllerVendasProdutos = new Tam_ControllerVendasProdutos();
+        tam_ControllerVendasProdutos.setList(new ArrayList());
+        jTable1.setModel(tam_ControllerVendasProdutos);
+
+        try {
+
+            MaskFormatter maskData = new MaskFormatter("##/##/####");
+            jFmtDataVenda_Tam.setFormatterFactory(new DefaultFormatterFactory(maskData));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -29,21 +79,389 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTxtTam_Codigo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jBtnTam_Incluir = new javax.swing.JButton();
+        jBtnTam_Alterar = new javax.swing.JButton();
+        jBtnTam_Excluir = new javax.swing.JButton();
+        jBtnTam_Confirmar = new javax.swing.JButton();
+        jBtnTam_Cancelar = new javax.swing.JButton();
+        jBtnTam_Pesquisar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTxtTam_Total = new javax.swing.JTextField();
+        jCbxCliente_Tam = new javax.swing.JComboBox<ClienteTam>();
+        jCbxVendedor_Tam = new javax.swing.JComboBox<VendedorTam>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jFmtDataVenda_Tam = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jBtnTam_Incluir1 = new javax.swing.JButton();
+        jBtnTam_Alterar1 = new javax.swing.JButton();
+        jBtnTam_Excluir1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Código");
+
+        jLabel2.setText("Cliente");
+
+        jBtnTam_Incluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluirr.png"))); // NOI18N
+        jBtnTam_Incluir.setText("Incluir");
+        jBtnTam_Incluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_IncluirActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterarr (1).png"))); // NOI18N
+        jBtnTam_Alterar.setText("Alterar");
+        jBtnTam_Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_AlterarActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluirr.png"))); // NOI18N
+        jBtnTam_Excluir.setText("Excluir");
+        jBtnTam_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_ExcluirActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Confirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmarr.png"))); // NOI18N
+        jBtnTam_Confirmar.setText("Confirmar");
+        jBtnTam_Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_ConfirmarActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caneclarr.png"))); // NOI18N
+        jBtnTam_Cancelar.setText("Cancelar");
+        jBtnTam_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_CancelarActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisarr.png"))); // NOI18N
+        jBtnTam_Pesquisar.setText("Pesquisar");
+        jBtnTam_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_PesquisarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Data da venda");
+
+        jLabel4.setText("Vendedor");
+
+        jLabel5.setText("Total");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jBtnTam_Incluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluirr.png"))); // NOI18N
+        jBtnTam_Incluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_Incluir1ActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Alterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterarr (1).png"))); // NOI18N
+        jBtnTam_Alterar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_Alterar1ActionPerformed(evt);
+            }
+        });
+
+        jBtnTam_Excluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluirr.png"))); // NOI18N
+        jBtnTam_Excluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTam_Excluir1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBtnTam_Incluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Confirmar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnTam_Pesquisar)
+                        .addGap(0, 39, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jFmtDataVenda_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jCbxCliente_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jCbxVendedor_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTxtTam_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBtnTam_Excluir1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jBtnTam_Incluir1)
+                                .addComponent(jBtnTam_Alterar1)))
+                        .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jCbxCliente_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCbxVendedor_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFmtDataVenda_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(9, 9, 9)
+                        .addComponent(jTxtTam_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBtnTam_Incluir)
+                            .addComponent(jBtnTam_Alterar)
+                            .addComponent(jBtnTam_Excluir)
+                            .addComponent(jBtnTam_Confirmar)
+                            .addComponent(jBtnTam_Cancelar)
+                            .addComponent(jBtnTam_Pesquisar))
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jBtnTam_Incluir1)
+                        .addGap(37, 37, 37)
+                        .addComponent(jBtnTam_Alterar1)
+                        .addGap(44, 44, 44)
+                        .addComponent(jBtnTam_Excluir1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public VendasTam viewBean() throws ParseException {
+        VendasTam vendas = new VendasTam();
+
+        vendas.setIdvendaTam(Tam_Util.strToInt(jTxtTam_Codigo.getText()));
+        vendas.setDataVendaTam(Tam_Util.strToDate(jFmtDataVenda_Tam.getText()));
+        vendas.setTotal_tam(Tam_Util.strToDouble(jTxtTam_Total.getText()));
+        vendas.setClienteTam((ClienteTam) jCbxCliente_Tam.getSelectedItem());
+        vendas.setVendedorTam((VendedorTam) jCbxVendedor_Tam.getSelectedItem());
+        vendas.setFormaPagamentoTam(1);
+        vendas.setHoraVendaTam("00:00:00");
+        vendas.setObservacoesVendaTam("SEM-OBVERVAÇÕES");
+        vendas.setTipoVendaTam("normal");
+
+        return vendas;
+    }
+
+    public void beanView(VendasTam vendas) {
+
+        jTxtTam_Codigo.setText(Tam_Util.intToString(vendas.getIdvendaTam()));
+        jFmtDataVenda_Tam.setText(Tam_Util.dateToStr(vendas.getDataVendaTam()));
+        jTxtTam_Total.setText(Tam_Util.doubleToString(vendas.getTotal_tam()));
+        jCbxCliente_Tam.setSelectedItem(vendas.getClienteTam());
+        jCbxVendedor_Tam.setSelectedItem(vendas.getVendedorTam());
+
+        VendasProdutosDAO dao = new VendasProdutosDAO();
+        List lista = (List) dao.listProdutos(vendas);
+        tam_ControllerVendasProdutos.setList(lista);
+    }
+    private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
+        // TODO add your handling code here:
+        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+
+        incluir = true;
+    }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
+
+    private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
+        // TODO add your handling code here:
+       Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+
+        incluir = false;
+
+    }//GEN-LAST:event_jBtnTam_AlterarActionPerformed
+
+    private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
+        // TODO add your handling code here:
+        if (Tam_Util.perguntar("Deseja excluir ?") == true) {
+            try {
+                VendasDAO pedidosDAO = new VendasDAO();
+                VendasProdutosDAO pedidosProdutosDAO = new VendasProdutosDAO();
+                for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                    VendasProdutosTam pedidosProdutos = tam_ControllerVendasProdutos.getBean(ind);
+                    pedidosProdutosDAO.delete(pedidosProdutos);
+                }
+                pedidosDAO.delete(viewBean());
+            } catch (ParseException ex) {
+                Logger.getLogger(Tam_JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        Tam_Util.limpar(
+                    jTxtTam_Codigo,
+                    jFmtDataVenda_Tam,
+                    jCbxCliente_Tam,
+                    jCbxVendedor_Tam,
+                    jTxtTam_Total
+            );
+        tam_ControllerVendasProdutos.setList(new ArrayList());
+    }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
+
+    private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
+        try {
+            // TODO add your handling code here:VendasDAO pedidosDAO = new VendasDAO();
+            VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+            VendasDAO vendasDAO = new VendasDAO();
+            VendasTam vendas = viewBean();
+
+            if (incluir == true) {
+                vendasDAO.insert(vendas);
+
+                for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                    VendasProdutosTam vendasProdutos = tam_ControllerVendasProdutos.getBean(ind);
+                    vendasProdutos.setVendasTam(vendas);
+                    vendasProdutosDAO.insert(vendasProdutos);
+                }
+
+            } else {
+                vendasDAO.update(vendas);
+            }
+
+            Tam_Util.habilitar(false,
+                    jTxtTam_Codigo,
+                    jFmtDataVenda_Tam,
+                    jCbxCliente_Tam,
+                    jCbxVendedor_Tam,
+                    jTxtTam_Total,
+                    jBtnTam_Confirmar,
+                    jBtnTam_Cancelar
+            );
+
+            Tam_Util.habilitar(true,
+                    jBtnTam_Incluir,
+                    jBtnTam_Pesquisar
+            );
+
+            Tam_Util.limpar(
+                    jTxtTam_Codigo,
+                    jFmtDataVenda_Tam,
+                    jCbxCliente_Tam,
+                    jCbxVendedor_Tam,
+                    jTxtTam_Total
+            );
+
+            tam_ControllerVendasProdutos.setList(new ArrayList());
+        } catch (ParseException ex) {
+            Logger.getLogger(Tam_JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
+
+    private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
+        // TODO add your handling code here:
+
+//        Tam_Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jBtnTam_Cancelar, jBtnTam_Confirmar,
+//                jCboTam_Nivel, jChbTam_Ativo, jFmtTam_Cpf, jFmtTam_DataDeNascimento, jPwdTam_Senha, jTxtTam_Apelido);
+//        Tam_Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+//        Tam_Tam_Util.limpar(jTxtTam_Codigo, jCboTam_Nivel, jChbTam_Ativo, jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataDeNascimento, jPwdTam_Senha, jTxtTam_Apelido);
+//        
+        tam_ControllerVendasProdutos.setList(new ArrayList());
+    }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
+
+    private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
+        // TODO add your handling code here:
+        JDlgTam_VendasPesquisar jDlgVendas = new JDlgTam_VendasPesquisar(null, true);
+        jDlgVendas.setTelaAnterior(this);
+        jDlgVendas.setVisible(true);
+        Tam_Util.habilitar(false,
+  
+                jBtnTam_Confirmar,
+                jBtnTam_Cancelar,
+                jBtnTam_Pesquisar,
+                jBtnTam_Incluir
+        );
+
+        Tam_Util.habilitar(true,
+                jBtnTam_Excluir,
+                jBtnTam_Alterar
+        );
+    }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
+
+    private void jBtnTam_Incluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_Incluir1ActionPerformed
+        // TODO add your handling code here:
+        Tam_JDlgVendasProdutos jDlgProduto = new Tam_JDlgVendasProdutos(null, true);
+        jDlgProduto.setTelaAnterior(this);
+        jDlgProduto.setVisible(true);
+    }//GEN-LAST:event_jBtnTam_Incluir1ActionPerformed
+
+    private void jBtnTam_Alterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_Alterar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnTam_Alterar1ActionPerformed
+
+    private void jBtnTam_Excluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_Excluir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnTam_Excluir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,6 +489,9 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Tam_JDlgVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -88,5 +509,26 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnTam_Alterar;
+    private javax.swing.JButton jBtnTam_Alterar1;
+    private javax.swing.JButton jBtnTam_Cancelar;
+    private javax.swing.JButton jBtnTam_Confirmar;
+    private javax.swing.JButton jBtnTam_Excluir;
+    private javax.swing.JButton jBtnTam_Excluir1;
+    private javax.swing.JButton jBtnTam_Incluir;
+    private javax.swing.JButton jBtnTam_Incluir1;
+    private javax.swing.JButton jBtnTam_Pesquisar;
+    private javax.swing.JComboBox<ClienteTam> jCbxCliente_Tam;
+    private javax.swing.JComboBox<VendedorTam> jCbxVendedor_Tam;
+    private javax.swing.JFormattedTextField jFmtDataVenda_Tam;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTxtTam_Codigo;
+    private javax.swing.JTextField jTxtTam_Total;
     // End of variables declaration//GEN-END:variables
 }

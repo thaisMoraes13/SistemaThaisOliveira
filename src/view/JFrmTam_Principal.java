@@ -37,13 +37,12 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         jMnuTam_Sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMnuTam_Venda = new javax.swing.JMenuItem();
-        jMnuTam_Vendas_Produtos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Cadastro");
 
-        jMnuTam_Usuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuTam_Usuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMnuTam_Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-usuário-48 (1).png"))); // NOI18N
         jMnuTam_Usuarios.setText("Usuarios");
         jMnuTam_Usuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +52,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuTam_Usuarios);
 
-        jMnuTam_Cliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuTam_Cliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMnuTam_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-usuário-de-gênero-neutro-48.png"))); // NOI18N
         jMnuTam_Cliente.setText("Cliente");
         jMnuTam_Cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +62,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuTam_Cliente);
 
-        jMnuTam_Vendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuTam_Vendedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         jMnuTam_Vendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-revendedor-48.png"))); // NOI18N
         jMnuTam_Vendedor.setText("Vendedor");
         jMnuTam_Vendedor.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +72,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuTam_Vendedor);
 
-        jMnuTam_Produto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuTam_Produto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMnuTam_Produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-produto-48.png"))); // NOI18N
         jMnuTam_Produto.setText("Produto");
         jMnuTam_Produto.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +82,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMnuTam_Produto);
 
-        jMnuTam_Sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuTam_Sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMnuTam_Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-saída-de-incêndio-48.png"))); // NOI18N
         jMnuTam_Sair.setText("Sair");
         jMnuTam_Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -97,25 +96,15 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Movimento");
 
-        jMnuTam_Venda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMnuTam_Venda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         jMnuTam_Venda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-promoção-carrinho-de-compras-48.png"))); // NOI18N
-        jMnuTam_Venda.setText("Venda");
+        jMnuTam_Venda.setText("Vendas");
         jMnuTam_Venda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMnuTam_VendaActionPerformed(evt);
             }
         });
         jMenu2.add(jMnuTam_Venda);
-
-        jMnuTam_Vendas_Produtos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMnuTam_Vendas_Produtos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-sale-price-tag-48.png"))); // NOI18N
-        jMnuTam_Vendas_Produtos.setText("Venda Produto");
-        jMnuTam_Vendas_Produtos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMnuTam_Vendas_ProdutosActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMnuTam_Vendas_Produtos);
 
         jMenuBar1.add(jMenu2);
 
@@ -149,7 +138,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
 
     private void jMnuTam_VendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_VendedorActionPerformed
         // TODO add your handling code here:
-        JDlgTam_VendedorPesquisar jDlgVendedor = new JDlgTam_VendedorPesquisar(this,true);
+        Tam_JDlgVendedor jDlgVendedor = new Tam_JDlgVendedor(this,true);
         jDlgVendedor.setVisible(true);
     }//GEN-LAST:event_jMnuTam_VendedorActionPerformed
 
@@ -169,13 +158,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
           Tam_JDlgVendas jDlgTam_Vendas = new Tam_JDlgVendas(this,true);
         jDlgTam_Vendas.setVisible(true);
     }//GEN-LAST:event_jMnuTam_VendaActionPerformed
-
-    private void jMnuTam_Vendas_ProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_Vendas_ProdutosActionPerformed
-        // TODO add your handling code here:
-         Tam_JDlgVendasProdutos jDlgTam_Vendas_Produtos = new Tam_JDlgVendasProdutos(this,true);
-        jDlgTam_Vendas_Produtos.setVisible(true);
-    }//GEN-LAST:event_jMnuTam_Vendas_ProdutosActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -220,7 +203,6 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnuTam_Sair;
     private javax.swing.JMenuItem jMnuTam_Usuarios;
     private javax.swing.JMenuItem jMnuTam_Venda;
-    private javax.swing.JMenuItem jMnuTam_Vendas_Produtos;
     private javax.swing.JMenuItem jMnuTam_Vendedor;
     // End of variables declaration//GEN-END:variables
 }

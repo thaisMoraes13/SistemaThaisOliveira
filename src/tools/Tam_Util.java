@@ -4,78 +4,99 @@
  */
 package tools;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import view.JDlgTam_ClientePesquisar;
-import view.JDlgTam_ProdutoPesquisar;
-import view.JDlgTam_UsuariosPesquisar;
-import view.JDlgTam_VendasPesquisar;
-import view.JDlgTam_VendedorPesquisar;
 
 /**
  *
- * @author u07431666128
- */
-/**
- * Hibernate Utility class with a convenient method to get Session Factory
- * object.
  *
- * @author u07431666128
+ * @author u06716483144
  */
 public class Tam_Util {
 
-     public static void habilitar(boolean valor, JComponent ... componentes) {
+    public static void habilitar(boolean valor, JComponent... componentes) {
         for (int i = 0; i < componentes.length; i++) {
             componentes[i].setEnabled(valor);
-            
+
         }
-        
     }
-    public static void limpar(JComponent ... componentes){
+
+    public static void limpar(JComponent... componentes) {
         for (int i = 0; i < componentes.length; i++) {
-            //instanceof limpar feito com isso
-            if (componentes[i] instanceof JTextField) {
-            ( (JTextField) componentes[i]).setText("");
+            if ((componentes[i]) instanceof JTextField) {
+                ((JTextField) componentes[i]).setText("");
+            } else if ((componentes[i]) instanceof JComboBox) {
+                ((JComboBox) componentes[i]).setSelectedIndex(-1);
+            } else if ((componentes[i]) instanceof JCheckBox){
+                ((JCheckBox) componentes[i]).setSelected(false);
+            } else {
             
-        }
-             if (componentes[i] instanceof JComboBox) {
-            ( (JComboBox) componentes[i]).setSelectedIndex(-1);
-            
+            }
+
         }
     }
-    }
-    public static void mensagem(String cad) {
-         JDlgTam_ClientePesquisar tela = new JDlgTam_ClientePesquisar(null, true);
-    tela.setLocationRelativeTo(null); 
-    tela.setVisible(true);     
-    }
-    
+
     public static boolean perguntar(String cad) {
-        JOptionPane.showConfirmDialog(null, cad);
-        return true;
+        int opcao = JOptionPane.showConfirmDialog(null, cad, "Confirmação", JOptionPane.YES_NO_OPTION);
+        return opcao == JOptionPane.YES_OPTION;
     }
-    
-    public static int strToInt(String num){
-        return Integer.valueOf(num);
+
+    public static String limparFormatacao(String valor) {
+        if (valor == null) {
+            return null;
+        }
+        return valor.replaceAll("\\D", "");
     }
-    public static String intToStr(int num) {
+
+    public static void mensagem(String cad) {
+        JOptionPane.showMessageDialog(null, cad);
+    }
+
+    public static int strToInt(String num) {
+        return Integer.parseInt(num);
+    }
+
+    public static String intToString(int num) {
         return String.valueOf(num);
     }
-    
-    public static double intToDouble(String num) {
-        return 0;
+
+    public static double strToDouble(String num) {
+        if (num == null || num.trim().isEmpty()) {
+            return 0.0;
+        }
+        return Double.parseDouble(num.trim().replace(',' ,'.'));
     }
-    public static String intToStr(double num) {
-        return "";
+
+    public static String doubleToString(double num) {
+        return String.valueOf(num);
     }
-    public static Date strToDate(String data) {
+
+    public static Date strToDate(String data) throws java.text.ParseException {
+  
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return formato.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(Tam_Util.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
-    public static String dateToStr(Date data){
-        return "";
-    }
-}
 
+    public static String dateToStr(Date data) {
+        if (data == null) {
+            return "";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
+    }
+
+}

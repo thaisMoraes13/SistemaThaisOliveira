@@ -1,23 +1,41 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package view;
 
+import bean.VendasProdutosTam;
+import bean.ProdutoTam;
+import dao.ProdutosDAO;
+import java.util.List;
+import tools.Tam_Util;
+
 /**
  *
- * @author u07431666128
+ * @author u1845853
  */
 public class Tam_JDlgVendasProdutos extends javax.swing.JDialog {
-
+Tam_JDlgVendas jDlgVendas;
     /**
-     * Creates new form Tam_JDlgVendasProdutos
+     * Creates new form JDlgVendasProdutosTam
      */
     public Tam_JDlgVendasProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
-        setTitle("Vendas Produto");
+        setTitle("Pedidos produtos");
+        setLocationRelativeTo(null);
+        jTxtQant.setText("1");
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+        for (Object object : lista) {
+            jCbxProduto.addItem((ProdutoTam) object);
+        }
+        Tam_Util.habilitar(false, jTxtValorUNi, jTxtTotal);
+    }
+
+    public void setTelaAnterior(Tam_JDlgVendas jDlgVendas) {
+        this.jDlgVendas = jDlgVendas;
     }
 
     /**
@@ -29,21 +47,150 @@ public class Tam_JDlgVendasProdutos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jCbxProduto = new javax.swing.JComboBox<ProdutoTam>();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtQant = new javax.swing.JTextField();
+        jTxtValorUNi = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTxtTotal = new javax.swing.JTextField();
+        jBtnOk = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Produtos");
+
+        jLabel2.setText("Quantidade");
+
+        jTxtQant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtQantActionPerformed(evt);
+            }
+        });
+        jTxtQant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtQantKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setText("Valor Unitário");
+
+        jLabel4.setText("Total");
+
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmarr.png"))); // NOI18N
+        jBtnOk.setText("Ok");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOkActionPerformed(evt);
+            }
+        });
+
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-saída-de-incêndio-48.png"))); // NOI18N
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jTxtQant, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jTxtValorUNi, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(35, 35, 35)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jCbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jBtnOk)
+                            .addGap(37, 37, 37)
+                            .addComponent(jBtnCancelar))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtQant, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtValorUNi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnOk)
+                    .addComponent(jBtnCancelar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+        // TODO add your handling code here:
+        VendasProdutosTam vendasProdutos = new VendasProdutosTam();
+        vendasProdutos.setIdVendaProdutoTam(1);
+        vendasProdutos.setProdutoTam((ProdutoTam) jCbxProduto.getSelectedItem());
+        vendasProdutos.setQuantidadeProdutoTam(jTxtQant.getText());
+        vendasProdutos.setValorUnitarioTam(jTxtValorUNi.getText());
+        vendasProdutos.setDescontoTam("0%");
+        vendasProdutos.setFormaPagamentoTam(1);
+        vendasProdutos.setTipoDescontoTam("desconto");
+        
+        jDlgVendas.tam_ControllerVendasProdutos.addBean(vendasProdutos);
+        setVisible(false);
+    }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    private void jTxtQantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtQantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtQantActionPerformed
+
+    private void jTxtQantKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQantKeyReleased
+        // TODO add your handling code here:
+        if (jTxtQant.getText().isEmpty() == false) {
+            ProdutoTam produtos = (ProdutoTam) jCbxProduto.getSelectedItem();
+            int quant = Tam_Util.strToInt(jTxtQant.getText());
+            jTxtTotal.setText(Tam_Util.doubleToString(quant * Tam_Util.strToDouble(produtos.getPrecoUnitarioTam()) ));
+            jTxtValorUNi.setText(produtos.getPrecoUnitarioTam());
+        } else {
+            Tam_Util.limpar(jTxtTotal);
+        }
+    }//GEN-LAST:event_jTxtQantKeyReleased
 
     /**
      * @param args the command line arguments
@@ -71,6 +218,21 @@ public class Tam_JDlgVendasProdutos extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Tam_JDlgVendasProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -88,5 +250,15 @@ public class Tam_JDlgVendasProdutos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnOk;
+    private javax.swing.JComboBox<ProdutoTam> jCbxProduto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTxtQant;
+    private javax.swing.JTextField jTxtTotal;
+    private javax.swing.JTextField jTxtValorUNi;
     // End of variables declaration//GEN-END:variables
 }

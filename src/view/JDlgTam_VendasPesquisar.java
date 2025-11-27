@@ -4,6 +4,11 @@
  */
 package view;
 
+import bean.VendasTam;
+import dao.VendasDAO;
+import java.util.List;
+import tools.Tam_Util;
+
 /**
  *
  * @author u07431666128
@@ -13,9 +18,24 @@ public class JDlgTam_VendasPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgTam_VendasPesquisar
      */
+    
+    private Tam_JDlgVendas tam_JDlgVendas;
+    ControllerVendas controllerVendas;
+
     public JDlgTam_VendasPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Pesquisar Vendas");
+        controllerVendas = new ControllerVendas();
+        VendasDAO vendasDAO = new VendasDAO();
+        List lista = (List) vendasDAO.listAll();
+        controllerVendas.setList(lista);
+        jTable1.setModel(controllerVendas);
+    }
+
+    public void setTelaAnterior(Tam_JDlgVendas tam_JDlgVendas) {
+        this.tam_JDlgVendas = tam_JDlgVendas;
     }
 
     /**
@@ -29,6 +49,7 @@ public class JDlgTam_VendasPesquisar extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jBtnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,7 +64,24 @@ public class JDlgTam_VendasPesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        jBtnOk.setText("OK");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,18 +90,47 @@ public class JDlgTam_VendasPesquisar extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnOk)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jBtnOk)
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+        // TODO add your handling code here:
+        if (jTable1.getSelectedRow() == -1) {
+            Tam_Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
+            VendasTam vendasTam = controllerVendas.getBean(jTable1.getSelectedRow());
+            tam_JDlgVendas.beanView(vendasTam);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            jBtnOkActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -108,6 +175,7 @@ public class JDlgTam_VendasPesquisar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

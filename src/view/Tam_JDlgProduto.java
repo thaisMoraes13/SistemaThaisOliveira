@@ -3,6 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
+import bean.ProdutoTam;
+import dao.ProdutosDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Tam_Util;
 
 /**
@@ -11,17 +19,27 @@ import tools.Tam_Util;
  */
 public class Tam_JDlgProduto extends javax.swing.JDialog {
 
+    private boolean incluir;
+
     /**
      * Creates new form Tam_JDlgProduto
      */
     public Tam_JDlgProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setTitle("Cadastro de Produto");
-        Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto, 
+
+        try {
+
+            MaskFormatter maskData = new MaskFormatter("##/##/####");
+            jFmtTam_DataFabricacao.setFormatterFactory(new DefaultFormatterFactory(maskData));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto,
                 jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto,
-                jBtnTam_Confirmar, jBtnTam_Cancelar);
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir);
     }
 
     /**
@@ -64,7 +82,7 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
 
         jLabel4.setText("Categoria");
 
-        jCboTam_CategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCboTam_CategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "grande", "pequeno", "muito pequeno" }));
 
         jLabel5.setText("Preço Unitário");
 
@@ -128,31 +146,33 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jFmtTam_QuantProduto, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jCboTam_CategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTxtTam_PrecoUnitario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFmtTam_DataFabricacao)))
-                    .addComponent(jTxtTam_Nome)
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jTxtTam_DescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jFmtTam_QuantProduto, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(69, 69, 69)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jCboTam_CategoriaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTxtTam_PrecoUnitario))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFmtTam_DataFabricacao, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(82, 82, 82))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBtnTam_Incluir)
@@ -197,12 +217,12 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
                 .addComponent(jTxtTam_DescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnTam_Incluir)
                     .addComponent(jBtnTam_Alterar)
                     .addComponent(jBtnTam_Excluir)
                     .addComponent(jBtnTam_Confirmar)
                     .addComponent(jBtnTam_Cancelar)
-                    .addComponent(jBtnTam_Pesquisar))
+                    .addComponent(jBtnTam_Pesquisar)
+                    .addComponent(jBtnTam_Incluir))
                 .addGap(41, 41, 41))
         );
 
@@ -211,50 +231,110 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
 
     private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_QuantProduto, 
+        incluir = true;
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_QuantProduto,
                 jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto,
-                jBtnTam_Confirmar, jBtnTam_Cancelar);
-         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
-
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jTxtTam_Codigo);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto,
+                jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto);
+        jTxtTam_Codigo.grabFocus();
     }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
 
     private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_QuantProduto, 
+        incluir = false;
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_QuantProduto,
                 jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto,
                 jBtnTam_Confirmar, jBtnTam_Cancelar);
         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
-
+        jTxtTam_Nome.grabFocus();
     }//GEN-LAST:event_jBtnTam_AlterarActionPerformed
 
     private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
         // TODO add your handling code here:
-         Tam_Util.perguntar("Deseja excluir o registro");
+        if (Tam_Util.perguntar("Deseja realmente excluir o registro?")) {
+            ProdutosDAO dao = new ProdutosDAO();
+            try {
+                dao.delete(viewBean());
+                Tam_Util.mensagem("Registro excluído com sucesso!");
+                Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto,
+                        jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto);
+                Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+                Tam_Util.habilitar(false, jBtnTam_Alterar, jBtnTam_Excluir);
+            } catch (ParseException ex) {
+                Logger.getLogger(Tam_JDlgProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Tam_Util.mensagem("Exclusão cancelada.");
+        }
     }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
 
     private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_QuantProduto, 
+        ProdutosDAO dao = new ProdutosDAO();
+        try {
+            ProdutoTam produto = viewBean();
+            if (incluir) {
+                dao.insert(produto);
+                Tam_Util.mensagem("Registro incluído com sucesso!");
+            } else {
+                dao.update(produto);
+                Tam_Util.mensagem("Registro alterado com sucesso!");
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Tam_JDlgProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_QuantProduto,
                 jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto,
-                jBtnTam_Confirmar, jBtnTam_Cancelar);
-        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jTxtTam_Codigo, jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto,
+                jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto);
 
     }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
 
     private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_QuantProduto, 
+        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_QuantProduto,
                 jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto,
-                jBtnTam_Confirmar, jBtnTam_Cancelar);
-         Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto, 
-                jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto );
-        
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jTxtTam_Codigo);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_QuantProduto,
+                jCboTam_CategoriaProduto, jTxtTam_PrecoUnitario, jFmtTam_DataFabricacao, jTxtTam_DescricaoProduto);
+
     }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
 
     private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.mensagem(null);
+        JDlgTam_ProdutoPesquisar jDlgProdutoPesquisar = new JDlgTam_ProdutoPesquisar(null, true);
+        jDlgProdutoPesquisar.setTelaAnterior(this);
+        jDlgProdutoPesquisar.setVisible(true);
+
+        Tam_Util.habilitar(true, jBtnTam_Alterar, jBtnTam_Excluir);
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
+    public void beanView(ProdutoTam produto) {
+        jTxtTam_Codigo.setText(Tam_Util.intToString(produto.getIdprodutoTam()));
+        jTxtTam_Nome.setText(produto.getNomeTam());
+        jFmtTam_QuantProduto.setText(String.valueOf(produto.getQuantidadeProdutoTam()));
+        jCboTam_CategoriaProduto.setSelectedIndex(produto.getCategoriaProdutoTam());
+        jTxtTam_PrecoUnitario.setText(String.valueOf(produto.getPrecoUnitarioTam()));
+        jFmtTam_DataFabricacao.setText(Tam_Util.dateToStr(produto.getDataFabricacaoTam()));
+        jTxtTam_DescricaoProduto.setText(produto.getDescricaoProdutoTam());
+    }
+
+    public ProdutoTam viewBean() throws ParseException {
+        ProdutoTam produto = new ProdutoTam();
+        produto.setIdprodutoTam(Tam_Util.strToInt(jTxtTam_Codigo.getText()));
+        produto.setNomeTam(jTxtTam_Nome.getText());
+        produto.setQuantidadeProdutoTam(Integer.parseInt(jFmtTam_QuantProduto.getText()));
+        produto.setCategoriaProdutoTam(jCboTam_CategoriaProduto.getSelectedIndex());
+        produto.setPrecoUnitarioTam((jTxtTam_PrecoUnitario.getText()));
+        produto.setDataFabricacaoTam(Tam_Util.strToDate(jFmtTam_DataFabricacao.getText()));
+        produto.setDescricaoProdutoTam(jTxtTam_DescricaoProduto.getText());
+        return produto;
+    }
 
     /**
      * @param args the command line arguments

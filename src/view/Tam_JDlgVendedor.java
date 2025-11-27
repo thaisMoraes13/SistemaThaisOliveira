@@ -3,7 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
+import bean.VendedorTam;
+import dao.VendedorDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Tam_Util;
+
 /**
  *
  * @author u07431666128
@@ -13,16 +22,38 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
     /**
      * Creates new form JDlgTam_VendedorPesquisar
      */
+    private boolean incluir;
+
     public Tam_JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Cadastro de Vendedor");
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, jTxtTam_Celular,
+                jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Excluir, jBtnTam_Alterar);
+        try {
+            MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+            jFmtTam_Cpf.setFormatterFactory(new DefaultFormatterFactory(maskCpf));
+
+            MaskFormatter maskRg = new MaskFormatter("#########");
+            jFmtTam_Rg.setFormatterFactory(new DefaultFormatterFactory(maskRg));
+
+            MaskFormatter maskData = new MaskFormatter("##/##/####");
+            jFmtTam_DataNascimento.setFormatterFactory(new DefaultFormatterFactory(maskData));
+
+            MaskFormatter maskCep = new MaskFormatter("#####-###");
+            jFmtTam_Cep.setFormatterFactory(new DefaultFormatterFactory(maskCep));
+
+            MaskFormatter maskCnpj = new MaskFormatter("##.###.###/####-##");
+            jFmtTam_Cnpj.setFormatterFactory(new DefaultFormatterFactory(maskCnpj));
+
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -55,11 +86,9 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jTxtTam_Bairro = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTxtTam_Cep = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTxtTam_Celular = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTxtTam_Cnpj = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTxtTam_Nacionalidade = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -70,6 +99,8 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
         jBtnTam_Confirmar = new javax.swing.JButton();
         jBtnTam_Cancelar = new javax.swing.JButton();
         jBtnTam_Pesquisar = new javax.swing.JButton();
+        jFmtTam_Cep = new javax.swing.JFormattedTextField();
+        jFmtTam_Cnpj = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -160,166 +191,150 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jLabel10)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jTxtTam_Bairro))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(jFmtTam_Cpf))
-                                        .addGap(97, 97, 97)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTxtTam_Email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addGap(63, 63, 63)
-                                                .addComponent(jLabel6))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(6, 6, 6)
-                                                        .addComponent(jLabel8)))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(6, 6, 6)
-                                                        .addComponent(jLabel11))
-                                                    .addComponent(jCboTam_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(6, 6, 6)
-                                                        .addComponent(jLabel12)))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel13)
-                                                    .addComponent(jTxtTam_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTxtTam_Cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(41, 41, 41))
+                        .addComponent(jLabel3)
+                        .addGap(311, 311, 311)
+                        .addComponent(jLabel4)
+                        .addGap(233, 233, 233)
+                        .addComponent(jLabel5)
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(90, 90, 90)
-                                .addComponent(jLabel15))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addComponent(jCboTam_Escolaridade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(293, 293, 293))
+                        .addComponent(jFmtTam_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCboTam_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(293, 293, 293)
+                        .addComponent(jLabel11)
+                        .addGap(232, 232, 232)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTxtTam_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jFmtTam_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel10)
+                        .addGap(393, 393, 393)
+                        .addComponent(jLabel12)
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel13))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTxtTam_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jFmtTam_Cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jCboTam_Escolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnTam_Incluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(9, 9, 9)
                         .addComponent(jBtnTam_Alterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(9, 9, 9)
                         .addComponent(jBtnTam_Excluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(9, 9, 9)
                         .addComponent(jBtnTam_Confirmar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(9, 9, 9)
                         .addComponent(jBtnTam_Cancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnTam_Pesquisar)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(9, 9, 9)
+                        .addComponent(jBtnTam_Pesquisar)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel4))
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFmtTam_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jFmtTam_Cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCboTam_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel8))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtTam_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTam_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFmtTam_Cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtTam_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtTam_Cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFmtTam_Cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCboTam_Escolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnTam_Incluir)
                     .addComponent(jBtnTam_Alterar)
                     .addComponent(jBtnTam_Excluir)
                     .addComponent(jBtnTam_Confirmar)
                     .addComponent(jBtnTam_Cancelar)
-                    .addComponent(jBtnTam_Pesquisar))
-                .addGap(24, 24, 24))
+                    .addComponent(jBtnTam_Pesquisar)))
         );
 
         pack();
@@ -327,65 +342,141 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
 
     private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, 
-                 jBtnTam_Excluir, jBtnTam_Pesquisar);
-
+        incluir = true;
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jTxtTam_Codigo);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
+        jTxtTam_Codigo.grabFocus();
     }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
 
     private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, 
-                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+        incluir = false;
+        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        jTxtTam_Nome.grabFocus();
     }//GEN-LAST:event_jBtnTam_AlterarActionPerformed
 
     private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
         // TODO add your handling code here:
-         Tam_Util.perguntar("Deseja excluir o registro");
+        if (Tam_Util.perguntar("Deseja realmente excluir o registro?")) {
+            VendedorDAO dao = new VendedorDAO();
+            try {
+                dao.delete(viewBean());
+                Tam_Util.mensagem("Registro excluído com sucesso!");
+                Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                        jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                        jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                        jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
+                Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+                Tam_Util.habilitar(false, jBtnTam_Alterar, jBtnTam_Excluir);
+            } catch (ParseException ex) {
+                Logger.getLogger(Tam_JDlgVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Tam_Util.mensagem("Exclusão cancelada.");
+        }
     }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
 
     private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-         Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, 
-                 jBtnTam_Excluir, jBtnTam_Pesquisar);
+        VendedorDAO dao = new VendedorDAO();
+        try {
+            VendedorTam vendedor = viewBean();
+            if (incluir) {
+                dao.insert(vendedor);
+                Tam_Util.mensagem("Registro incluído com sucesso!");
+            } else {
+                dao.update(vendedor);
+                Tam_Util.mensagem("Registro alterado com sucesso!");
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Tam_JDlgVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jTxtTam_Codigo, jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
+
     }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
 
     private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
-                 jBtnTam_Confirmar, jBtnTam_Cancelar );
-           Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email, 
-                 jTxtTam_Cidade, jTxtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro, 
-                 jTxtTam_Celular, 
-                 jTxtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
+        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_Rg, jFmtTam_DataNascimento, jCboTam_Sexo, jTxtTam_Email,
+                jTxtTam_Cidade, jFmtTam_Cep, jTxtTam_Endereco, jTxtTam_Bairro,
+                jTxtTam_Celular, jFmtTam_Cnpj, jTxtTam_Nacionalidade, jCboTam_Escolaridade);
     }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
 
     private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.mensagem(null);
+        JDlgTam_VendedorPesquisar jDlgPesquisar = new JDlgTam_VendedorPesquisar(null, true);
+        jDlgPesquisar.setTelaAnterior(this);
+        jDlgPesquisar.setVisible(true);
+        Tam_Util.habilitar(true, jBtnTam_Alterar, jBtnTam_Excluir);
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
+
+    public void beanView(VendedorTam vendedor) {
+        jTxtTam_Codigo.setText(Tam_Util.intToString(vendedor.getIdvendedorTam()));
+        jTxtTam_Nome.setText(vendedor.getNomeTam());
+        jFmtTam_Cpf.setText(vendedor.getCpfTam());
+        jFmtTam_Rg.setText(vendedor.getRgTam());
+        jFmtTam_DataNascimento.setText(Tam_Util.dateToStr(vendedor.getDataNascTam()));
+        jCboTam_Sexo.setSelectedIndex(vendedor.getSexoTam());
+        jTxtTam_Email.setText(vendedor.getEmailTam());
+        jTxtTam_Cidade.setText(vendedor.getCidadeTam());
+        jFmtTam_Cep.setText(vendedor.getCepTam());
+        jTxtTam_Endereco.setText(vendedor.getEnderecoTam());
+        jTxtTam_Bairro.setText(vendedor.getBairroTam());
+        jTxtTam_Celular.setText(vendedor.getCelularTam());
+        jFmtTam_Cnpj.setText(vendedor.getCnpjTam());
+        jTxtTam_Nacionalidade.setText(vendedor.getNacionalidadeTam());
+        jCboTam_Escolaridade.setSelectedIndex(vendedor.getEscolaridade());
+    }
+
+    public VendedorTam viewBean() throws ParseException {
+        VendedorTam vendedor = new VendedorTam();
+        vendedor.setIdvendedorTam(Tam_Util.strToInt(jTxtTam_Codigo.getText()));
+        vendedor.setNomeTam(jTxtTam_Nome.getText());
+        vendedor.setCpfTam(jFmtTam_Cpf.getText());
+        vendedor.setRgTam(jFmtTam_Rg.getText());
+        vendedor.setDataNascTam(Tam_Util.strToDate(jFmtTam_DataNascimento.getText()));
+        vendedor.setSexoTam(jCboTam_Sexo.getSelectedIndex());
+        vendedor.setEmailTam(jTxtTam_Email.getText());
+        vendedor.setCidadeTam(jTxtTam_Cidade.getText());
+        vendedor.setCepTam(jFmtTam_Cep.getText());
+        vendedor.setEnderecoTam(jTxtTam_Endereco.getText());
+        vendedor.setBairroTam(jTxtTam_Bairro.getText());
+        vendedor.setCelularTam(jTxtTam_Celular.getText());
+        vendedor.setCnpjTam(jFmtTam_Cnpj.getText());
+        vendedor.setNacionalidadeTam(jTxtTam_Nacionalidade.getText());
+        vendedor.setEscolaridade(jCboTam_Escolaridade.getSelectedIndex());
+        return vendedor;
+    }
 
     /**
      * @param args the command line arguments
@@ -441,6 +532,8 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
     private javax.swing.JButton jBtnTam_Pesquisar;
     private javax.swing.JComboBox<String> jCboTam_Escolaridade;
     private javax.swing.JComboBox<String> jCboTam_Sexo;
+    private javax.swing.JFormattedTextField jFmtTam_Cep;
+    private javax.swing.JFormattedTextField jFmtTam_Cnpj;
     private javax.swing.JFormattedTextField jFmtTam_Cpf;
     private javax.swing.JFormattedTextField jFmtTam_DataNascimento;
     private javax.swing.JFormattedTextField jFmtTam_Rg;
@@ -461,9 +554,7 @@ public class Tam_JDlgVendedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTxtTam_Bairro;
     private javax.swing.JTextField jTxtTam_Celular;
-    private javax.swing.JTextField jTxtTam_Cep;
     private javax.swing.JTextField jTxtTam_Cidade;
-    private javax.swing.JTextField jTxtTam_Cnpj;
     private javax.swing.JTextField jTxtTam_Codigo;
     private javax.swing.JTextField jTxtTam_Email;
     private javax.swing.JTextField jTxtTam_Endereco;

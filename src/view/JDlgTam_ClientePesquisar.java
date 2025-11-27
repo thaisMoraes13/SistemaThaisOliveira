@@ -4,6 +4,10 @@
  */
 package view;
 
+import bean.ClienteTam;
+import dao.ClientesDAO;
+import java.util.List;
+
 /**
  *
  * @author u07431666128
@@ -13,11 +17,23 @@ public class JDlgTam_ClientePesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgTam_ClientePesquisar
      */
+    private Tam_JDlgCliente tam_jDlgCliente;
+    Tam_ControllerCliente tam_controllerCliente;
+    
     public JDlgTam_ClientePesquisar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+                super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Pesquisar Usuários");
+        tam_controllerCliente = new Tam_ControllerCliente();
+        ClientesDAO usuariosDAO = new ClientesDAO();
+        List lista = (List) usuariosDAO.listAll();
+        tam_controllerCliente.setList(lista);
+        jTable1.setModel(tam_controllerCliente);
     }
-
+   public void setTelaAnterior(Tam_JDlgCliente tam_jDlgCliente) {;
+        this.tam_jDlgCliente = tam_jDlgCliente;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +45,7 @@ public class JDlgTam_ClientePesquisar extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        ok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,7 +60,19 @@ public class JDlgTam_ClientePesquisar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        ok.setText("OK");
+        ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,18 +81,39 @@ public class JDlgTam_ClientePesquisar extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ok)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ok)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
+        // TODO add your handling code here:
+        ClienteTam usuarios =  tam_controllerCliente.getBean( jTable1.getSelectedRow() );
+        tam_jDlgCliente.beanView(usuarios);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_okActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+              if (evt.getClickCount() == 2) {
+            okActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -110,5 +160,6 @@ public class JDlgTam_ClientePesquisar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton ok;
     // End of variables declaration//GEN-END:variables
 }

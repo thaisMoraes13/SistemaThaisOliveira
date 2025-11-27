@@ -3,9 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+
+import bean.ClienteTam;
+import dao.ClientesDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Tam_Util;
-
-
 
 /**
  *
@@ -16,16 +22,35 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
     /**
      * Creates new form Tam_JDlgCliente
      */
+    private boolean incluir;
     public Tam_JDlgCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setLocationRelativeTo(null);
-        setTitle("Cadastro de Cliente");
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg, 
-                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, 
-                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular, 
-                 jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar);
+        setLocationRelativeTo(null);
+        setTitle("Cadastro de Clienteee");
+        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_Cpf,jTxtTam_Codigo,
+                jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar,
+                jBtnTam_Alterar ,jBtnTam_Excluir );
+
+        try {
+            MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+            jFmtTam_Cpf.setFormatterFactory(new DefaultFormatterFactory(maskCpf));
+
+            MaskFormatter maskData = new MaskFormatter("##/##/####");
+            jFmtTam_DataNascimento.setFormatterFactory(new DefaultFormatterFactory(maskData));
+
+            MaskFormatter maskRg = new MaskFormatter("#########");
+            jFmtTam_Rg.setFormatterFactory(new DefaultFormatterFactory(maskRg));
+
+          
+
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -169,65 +194,9 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFmtTam_Cpf, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4)
-                            .addComponent(jFmtTam_DataNascimento)
-                            .addComponent(jCboTam_Sexo, 0, 122, Short.MAX_VALUE))
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTxtTam_Email)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel1)
-                            .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(jLabel10))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTxtTam_Profissao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTxtTam_Bairro, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(16, 16, 16)
-                                                .addComponent(jLabel12)
-                                                .addGap(58, 58, 58))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jFmtTam_N, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTxtTam_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(161, 161, 161)
-                                .addComponent(jLabel7))
+                            .addComponent(jLabel6)
                             .addComponent(jLabel14)
                             .addComponent(jCboTam_EstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -241,8 +210,63 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jBtnTam_Cancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnTam_Pesquisar)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jBtnTam_Pesquisar))
+                            .addComponent(jTxtTam_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jFmtTam_Rg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFmtTam_Cpf, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTxtTam_Endereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTxtTam_Cidade, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel10))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTxtTam_Bairro)
+                                            .addComponent(jTxtTam_Profissao)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(jTxtTam_Nacionalidade, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jFmtTam_DataNascimento, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jCboTam_Sexo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(jLabel9)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(jLabel7)))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(38, 38, 38)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(5, 5, 5)
+                                                        .addComponent(jLabel12)
+                                                        .addGap(58, 58, 58))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addComponent(jFmtTam_N, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel13)
+                                                    .addComponent(jTxtTam_Celular, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel5)
+                                            .addComponent(jTxtTam_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(304, 304, 304))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,64 +341,153 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
 
     private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg, 
-                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, 
-                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular, 
-                 jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar);
-  
+        Tam_Util.habilitar(true,
+                jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar, jTxtTam_Codigo
+        );
         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
-
+        Tam_Util.limpar(
+                jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao
+        );
+        jTxtTam_Codigo.grabFocus();
+        incluir = true;
     }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
 
     private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg, 
-                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, 
-                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular, 
-                 jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar);
-  
-        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
-
+        Tam_Util.habilitar(true,
+                jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar
+        );
+        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar, jTxtTam_Codigo);
+        jTxtTam_Nome.grabFocus();
+        incluir = false;
     }//GEN-LAST:event_jBtnTam_AlterarActionPerformed
 
     private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
         // TODO add your handling code here:
-         Tam_Util.perguntar("Deseja excluir o registro");
+        if (Tam_Util.perguntar("Deseja realmente excluir o registro?")) {
+            Tam_Util.mensagem("Registro excluído com sucesso!");
+            ClientesDAO dao = new ClientesDAO();
+            try {
+                dao.delete(viewBean());
+                Tam_Util.limpar(
+                        jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataNascimento, 
+                        jTxtTam_Email, jFmtTam_Rg,
+                        jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                        jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                        jCboTam_EstadoCivil, jTxtTam_Profissao
+                );
+                Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
+                Tam_Util.habilitar(false, jBtnTam_Alterar, jBtnTam_Excluir);
+            } catch (ParseException ex) {
+                Logger.getLogger(Tam_JDlgCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Tam_Util.mensagem("Exclusão cancelada.");
+        }
     }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
 
     private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(false, jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg, 
-                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, 
-                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular, 
-                 jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar);
-  
-        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        ClientesDAO dao = new ClientesDAO();
+        try {
+            ClienteTam cliente = viewBean();
+            if (cliente.getIdclienteTam() == 0) {
+                Tam_Util.mensagem("Por favor, informe um ID válido!");
+            } else if (incluir) {
+                dao.insert(cliente);
+            } else {
+                dao.update(cliente);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Tam_JDlgCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+        Tam_Util.habilitar(false,
+                jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataNascimento, jTxtTam_Email, 
+                jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir
+        );
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(
+                jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao
+        );
+ 
     }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
 
     private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
         // TODO add your handling code here:
-         Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg, 
-                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, 
-                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular, 
-                 jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar);
-         Tam_Util.limpar( jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf, 
-                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg, 
-                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, 
-                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular, 
-                 jCboTam_EstadoCivil, jTxtTam_Profissao);
+        Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
+                jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
+                jCboTam_EstadoCivil, jTxtTam_Profissao);
     }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
 
     private void jBtnTam_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_PesquisarActionPerformed
         // TODO add your handling code here:
-         
-         Tam_Util.mensagem(null);
+        JDlgTam_ClientePesquisar jDlgClientePesquisar = new JDlgTam_ClientePesquisar(null, true);
+        jDlgClientePesquisar.setTelaAnterior(this);
+        jDlgClientePesquisar.setVisible(true);
+
+        Tam_Util.habilitar(true, jBtnTam_Alterar, jBtnTam_Excluir);
+
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
+    public void beanView(ClienteTam cliente) {
+        jTxtTam_Codigo.setText(Tam_Util.intToString(cliente.getIdclienteTam()));
+        jTxtTam_Nome.setText(cliente.getNomeTam());
+        jFmtTam_Cpf.setText(cliente.getCpfTam());
+        jFmtTam_Rg.setText(cliente.getRg());
+        jFmtTam_DataNascimento.setText(Tam_Util.dateToStr(cliente.getDataNascTam()));
+        jCboTam_Sexo.setSelectedIndex(Tam_Util.strToInt(cliente.getSexoTam()) );
+        jTxtTam_Email.setText(cliente.getEmailTam());
+        jTxtTam_Cidade.setText(cliente.getCidadeTam());
+        jTxtTam_Nacionalidade.setText(cliente.getNacionalidadeTam());
+        jTxtTam_Endereco.setText(cliente.getEnderecoTam());
+        jTxtTam_Bairro.setText(cliente.getBairroTam());
+        jFmtTam_N.setText(cliente.getNumeroTam());
+        jTxtTam_Celular.setText(cliente.getCelularTam());
+        jCboTam_EstadoCivil.setSelectedIndex(cliente.getEstadoCivilTam());
+        jTxtTam_Profissao.setText(cliente.getProfissaoTam());
+    }
+
+    public ClienteTam viewBean() throws ParseException {
+        ClienteTam cliente = new ClienteTam();
+        cliente.setIdclienteTam(Tam_Util.strToInt(jTxtTam_Codigo.getText()));
+        cliente.setNomeTam(jTxtTam_Nome.getText());
+        cliente.setCpfTam(jFmtTam_Cpf.getText());
+        cliente.setRg(jFmtTam_Rg.getText());
+        cliente.setDataNascTam(Tam_Util.strToDate(jFmtTam_DataNascimento.getText()));
+        cliente.setSexoTam(Tam_Util.intToString(jCboTam_Sexo.getSelectedIndex()) );
+        cliente.setEmailTam(jTxtTam_Email.getText());
+        cliente.setCidadeTam(jTxtTam_Cidade.getText());
+        cliente.setNacionalidadeTam(jTxtTam_Nacionalidade.getText());
+        cliente.setEnderecoTam(jTxtTam_Endereco.getText());
+        cliente.setBairroTam(jTxtTam_Bairro.getText());
+        cliente.setNumeroTam(jFmtTam_N.getText());
+        cliente.setCelularTam(jTxtTam_Celular.getText());
+        cliente.setEstadoCivilTam(jCboTam_EstadoCivil.getSelectedIndex());
+        cliente.setProfissaoTam(jTxtTam_Profissao.getText());
+        return cliente;
+    }
 
     /**
      * @param args the command line arguments
