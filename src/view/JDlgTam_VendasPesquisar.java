@@ -20,14 +20,14 @@ public class JDlgTam_VendasPesquisar extends javax.swing.JDialog {
      */
     
     private Tam_JDlgVendas tam_JDlgVendas;
-    ControllerVendas controllerVendas;
+    Tam_ControllerVendas controllerVendas;
 
     public JDlgTam_VendasPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisar Vendas");
-        controllerVendas = new ControllerVendas();
+        controllerVendas = new Tam_ControllerVendas();
         VendasDAO vendasDAO = new VendasDAO();
         List lista = (List) vendasDAO.listAll();
         controllerVendas.setList(lista);

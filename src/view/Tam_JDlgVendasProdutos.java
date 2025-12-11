@@ -16,7 +16,10 @@ import tools.Tam_Util;
  * @author u1845853
  */
 public class Tam_JDlgVendasProdutos extends javax.swing.JDialog {
-Tam_JDlgVendas jDlgVendas;
+
+    Tam_JDlgVendas jDlgVendas;
+    boolean incluir;
+
     /**
      * Creates new form JDlgVendasProdutosTam
      */
@@ -32,10 +35,18 @@ Tam_JDlgVendas jDlgVendas;
             jCbxProduto.addItem((ProdutoTam) object);
         }
         Tam_Util.habilitar(false, jTxtValorUNi, jTxtTotal);
+        jTxtQantKeyReleased(null);
     }
 
-    public void setTelaAnterior(Tam_JDlgVendas jDlgVendas) {
+    public void setTelaAnterior(Tam_JDlgVendas jDlgVendas, VendasProdutosTam vendasProd) {
         this.jDlgVendas = jDlgVendas;
+        if (vendasProd != null) {
+            incluir = false;
+            jCbxProduto.setSelectedItem(vendasProd.getProdutoTam());
+            jTxtQant.setText(vendasProd.getQuantidadeProdutoTam());
+        } else {
+            incluir = true;
+        }
     }
 
     /**
@@ -166,7 +177,7 @@ Tam_JDlgVendas jDlgVendas;
         vendasProdutos.setDescontoTam("0%");
         vendasProdutos.setFormaPagamentoTam(1);
         vendasProdutos.setTipoDescontoTam("desconto");
-        
+
         jDlgVendas.tam_ControllerVendasProdutos.addBean(vendasProdutos);
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
@@ -185,8 +196,8 @@ Tam_JDlgVendas jDlgVendas;
         if (jTxtQant.getText().isEmpty() == false) {
             ProdutoTam produtos = (ProdutoTam) jCbxProduto.getSelectedItem();
             int quant = Tam_Util.strToInt(jTxtQant.getText());
-            jTxtTotal.setText(Tam_Util.doubleToString(quant * Tam_Util.strToDouble(produtos.getPrecoUnitarioTam()) ));
-            jTxtValorUNi.setText(produtos.getPrecoUnitarioTam());
+            jTxtTotal.setText(Tam_Util.doubleToString(quant * produtos.getPrecoUnitarioTam()));
+            jTxtValorUNi.setText(Tam_Util.doubleToString(produtos.getPrecoUnitarioTam()));
         } else {
             Tam_Util.limpar(jTxtTotal);
         }

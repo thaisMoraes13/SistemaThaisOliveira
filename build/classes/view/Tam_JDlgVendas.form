@@ -72,10 +72,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jBtnTam_Excluir1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBtnTam_ExcluirProd" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="jBtnTam_Incluir1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBtnTam_Alterar1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnTam_IncluirProd" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnTam_AlterarProd" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -137,11 +137,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="jBtnTam_Incluir1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnTam_IncluirProd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="jBtnTam_Alterar1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnTam_AlterarProd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jBtnTam_Excluir1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBtnTam_ExcluirProd" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -290,34 +290,34 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jBtnTam_Incluir1">
+    <Component class="javax.swing.JButton" name="jBtnTam_IncluirProd">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/img/incluirr.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnTam_Incluir1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnTam_IncluirProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBtnTam_Alterar1">
+    <Component class="javax.swing.JButton" name="jBtnTam_AlterarProd">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/img/alterarr (1).png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnTam_Alterar1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnTam_AlterarProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBtnTam_Excluir1">
+    <Component class="javax.swing.JButton" name="jBtnTam_ExcluirProd">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/img/excluirr.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnTam_Excluir1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnTam_ExcluirProdActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

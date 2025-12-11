@@ -319,7 +319,7 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
         jTxtTam_Nome.setText(produto.getNomeTam());
         jFmtTam_QuantProduto.setText(String.valueOf(produto.getQuantidadeProdutoTam()));
         jCboTam_CategoriaProduto.setSelectedIndex(produto.getCategoriaProdutoTam());
-        jTxtTam_PrecoUnitario.setText(String.valueOf(produto.getPrecoUnitarioTam()));
+        jTxtTam_PrecoUnitario.setText(Tam_Util.doubleToString(produto.getPrecoUnitarioTam()));
         jFmtTam_DataFabricacao.setText(Tam_Util.dateToStr(produto.getDataFabricacaoTam()));
         jTxtTam_DescricaoProduto.setText(produto.getDescricaoProdutoTam());
     }
@@ -330,7 +330,7 @@ public class Tam_JDlgProduto extends javax.swing.JDialog {
         produto.setNomeTam(jTxtTam_Nome.getText());
         produto.setQuantidadeProdutoTam(Integer.parseInt(jFmtTam_QuantProduto.getText()));
         produto.setCategoriaProdutoTam(jCboTam_CategoriaProduto.getSelectedIndex());
-        produto.setPrecoUnitarioTam((jTxtTam_PrecoUnitario.getText()));
+        produto.setPrecoUnitarioTam((Tam_Util.strToDouble( jTxtTam_PrecoUnitario.getText())));
         produto.setDataFabricacaoTam(Tam_Util.strToDate(jFmtTam_DataFabricacao.getText()));
         produto.setDescricaoProdutoTam(jTxtTam_DescricaoProduto.getText());
         return produto;

@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Marcos
  */
-public class ControllerVendas extends AbstractTableModel {
+public class Tam_ControllerVendas extends AbstractTableModel {
 
     private List lstVendas;
 

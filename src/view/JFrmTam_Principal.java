@@ -15,7 +15,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
      */
     public JFrmTam_Principal() {
         initComponents();
-         setTitle("Sistema de Vendas de Roupas");
+        setTitle("Sistema de Vendas de Roupas");
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -28,6 +28,11 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
+        jBtnClienteTool = new javax.swing.JButton();
+        jBtnVendedorToll = new javax.swing.JButton();
+        jbtnProd = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMnuTam_Usuarios = new javax.swing.JMenuItem();
@@ -37,8 +42,47 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         jMnuTam_Sair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMnuTam_Venda = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMnProdConsulta = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jToolBar1.setRollover(true);
+
+        jBtnClienteTool.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-usuário-de-gênero-neutro-48.png"))); // NOI18N
+        jBtnClienteTool.setFocusable(false);
+        jBtnClienteTool.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnClienteTool.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnClienteTool.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnClienteToolActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnClienteTool);
+
+        jBtnVendedorToll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-revendedor-48.png"))); // NOI18N
+        jBtnVendedorToll.setFocusable(false);
+        jBtnVendedorToll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnVendedorToll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnVendedorToll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnVendedorTollActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnVendedorToll);
+
+        jbtnProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-produto-48.png"))); // NOI18N
+        jbtnProd.setFocusable(false);
+        jbtnProd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnProd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnProdActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jbtnProd);
+        jToolBar1.add(jSeparator1);
 
         jMenu1.setText("Cadastro");
 
@@ -108,17 +152,41 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Consulta");
+
+        jMnProdConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-produto-48.png"))); // NOI18N
+        jMnProdConsulta.setText("Produtos");
+        jMnProdConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnProdConsultaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMnProdConsulta);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-usuário-de-gênero-neutro-48.png"))); // NOI18N
+        jMenuItem1.setText("Clientes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 218, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,39 +194,66 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
 
     private void jMnuTam_UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_UsuariosActionPerformed
         // TODO add your handling code here:
-         Tam_JDlgUsuarios jDlgUsuarios = new  Tam_JDlgUsuarios(this,true);
+        Tam_JDlgUsuarios jDlgUsuarios = new Tam_JDlgUsuarios(this, true);
         jDlgUsuarios.setVisible(true);
     }//GEN-LAST:event_jMnuTam_UsuariosActionPerformed
 
     private void jMnuTam_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_ClienteActionPerformed
         // TODO add your handling code here:
-         Tam_JDlgCliente jDlgCliente = new Tam_JDlgCliente(this,true);
+        Tam_JDlgCliente jDlgCliente = new Tam_JDlgCliente(this, true);
         jDlgCliente.setVisible(true);
     }//GEN-LAST:event_jMnuTam_ClienteActionPerformed
 
     private void jMnuTam_VendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_VendedorActionPerformed
         // TODO add your handling code here:
-        Tam_JDlgVendedor jDlgVendedor = new Tam_JDlgVendedor(this,true);
+        Tam_JDlgVendedor jDlgVendedor = new Tam_JDlgVendedor(this, true);
         jDlgVendedor.setVisible(true);
     }//GEN-LAST:event_jMnuTam_VendedorActionPerformed
 
     private void jMnuTam_ProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_ProdutoActionPerformed
         // TODO add your handling code here:
-        Tam_JDlgProduto jDlgProduto = new Tam_JDlgProduto(this,true);
+        Tam_JDlgProduto jDlgProduto = new Tam_JDlgProduto(this, true);
         jDlgProduto.setVisible(true);
     }//GEN-LAST:event_jMnuTam_ProdutoActionPerformed
 
     private void jMnuTam_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_SairActionPerformed
         // TODO add your handling code here:
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jMnuTam_SairActionPerformed
 
     private void jMnuTam_VendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuTam_VendaActionPerformed
         // TODO add your handling code here:
-          Tam_JDlgVendas jDlgTam_Vendas = new Tam_JDlgVendas(this,true);
+        Tam_JDlgVendas jDlgTam_Vendas = new Tam_JDlgVendas(this, true);
         jDlgTam_Vendas.setVisible(true);
     }//GEN-LAST:event_jMnuTam_VendaActionPerformed
-    
+
+    private void jBtnClienteToolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClienteToolActionPerformed
+        // TODO add your handling code here:
+        jMnuTam_ClienteActionPerformed(null);
+    }//GEN-LAST:event_jBtnClienteToolActionPerformed
+
+    private void jBtnVendedorTollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVendedorTollActionPerformed
+        // TODO add your handling code here:
+        jMnuTam_VendedorActionPerformed(null);
+    }//GEN-LAST:event_jBtnVendedorTollActionPerformed
+
+    private void jbtnProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProdActionPerformed
+        // TODO add your handling code here:
+        jMnuTam_ProdutoActionPerformed(null);
+    }//GEN-LAST:event_jbtnProdActionPerformed
+
+    private void jMnProdConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProdConsultaActionPerformed
+        // TODO add your handling code here:
+        Tam_JDlgConsultaProdutos jDlgTam_Vendas = new Tam_JDlgConsultaProdutos(this, true);
+        jDlgTam_Vendas.setVisible(true);
+    }//GEN-LAST:event_jMnProdConsultaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        Tam_JDlgConsultaProdutos jDlgTam_Vendas = new Tam_JDlgConsultaProdutos(this, true);
+        jDlgTam_Vendas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,14 +290,22 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnClienteTool;
+    private javax.swing.JButton jBtnVendedorToll;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMnProdConsulta;
     private javax.swing.JMenuItem jMnuTam_Cliente;
     private javax.swing.JMenuItem jMnuTam_Produto;
     private javax.swing.JMenuItem jMnuTam_Sair;
     private javax.swing.JMenuItem jMnuTam_Usuarios;
     private javax.swing.JMenuItem jMnuTam_Venda;
     private javax.swing.JMenuItem jMnuTam_Vendedor;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jbtnProd;
     // End of variables declaration//GEN-END:variables
 }

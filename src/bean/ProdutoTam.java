@@ -28,7 +28,7 @@ public class ProdutoTam  implements java.io.Serializable {
      private String nomeTam;
      private int categoriaProdutoTam;
      private int quantidadeProdutoTam;
-     private String precoUnitarioTam;
+     private double precoUnitarioTam;
      private String descricaoProdutoTam;
      private Date dataFabricacaoTam;
  
@@ -37,7 +37,7 @@ public class ProdutoTam  implements java.io.Serializable {
     }
 
 	
-    public ProdutoTam(int idprodutoTam, String nomeTam, int categoriaProdutoTam, int quantidadeProdutoTam, String precoUnitarioTam, String descricaoProdutoTam, Date dataFabricacaoTam) {
+    public ProdutoTam(int idprodutoTam, String nomeTam, int categoriaProdutoTam, int quantidadeProdutoTam, double precoUnitarioTam, String descricaoProdutoTam, Date dataFabricacaoTam) {
         this.idprodutoTam = idprodutoTam;
         this.nomeTam = nomeTam;
         this.categoriaProdutoTam = categoriaProdutoTam;
@@ -92,11 +92,11 @@ public class ProdutoTam  implements java.io.Serializable {
 
     
     @Column(name="precoUnitario_tam", nullable=false, length=10)
-    public String getPrecoUnitarioTam() {
+    public double getPrecoUnitarioTam() {
         return this.precoUnitarioTam;
     }
     
-    public void setPrecoUnitarioTam(String precoUnitarioTam) {
+    public void setPrecoUnitarioTam(double precoUnitarioTam) {
         this.precoUnitarioTam = precoUnitarioTam;
     }
 

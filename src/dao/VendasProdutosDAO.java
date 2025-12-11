@@ -33,6 +33,21 @@ public class VendasProdutosDAO extends AbstractDAO {
         session.getTransaction().commit();
     }
 
+    public void deleteProdutos(VendasTam vendas) {
+        //listar todos os produtos do pedido
+        List lista = (List) listProdutos(vendas);
+        //deleta  a lista acima 
+        session.beginTransaction();
+        for (int i = 0; i < lista.size(); i++) {
+            VendasProdutosTam vendprod = (VendasProdutosTam) lista.get(i);
+            //delete(pedidosProdutos);
+            session.flush();
+            session.clear();
+            session.delete(vendprod);
+        }
+        session.getTransaction().commit();
+    }
+
     @Override
     public void delete(Object object) {
         session.beginTransaction();
@@ -51,8 +66,7 @@ public class VendasProdutosDAO extends AbstractDAO {
         session.getTransaction().commit();
         return lista;
     }
-    
-    
+
     public Object listProdutos(VendasTam vendas) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendasProdutosTam.class);
@@ -70,6 +84,7 @@ public class VendasProdutosDAO extends AbstractDAO {
         session.getTransaction().commit();
         return lista;
     }
+
     public static void main(String[] args) {
         ClientesDAO clientesDAO = new ClientesDAO();
         clientesDAO.listAll();

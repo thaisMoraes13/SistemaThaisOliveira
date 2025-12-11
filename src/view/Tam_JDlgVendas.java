@@ -97,9 +97,9 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         jFmtDataVenda_Tam = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jBtnTam_Incluir1 = new javax.swing.JButton();
-        jBtnTam_Alterar1 = new javax.swing.JButton();
-        jBtnTam_Excluir1 = new javax.swing.JButton();
+        jBtnTam_IncluirProd = new javax.swing.JButton();
+        jBtnTam_AlterarProd = new javax.swing.JButton();
+        jBtnTam_ExcluirProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -174,24 +174,24 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jBtnTam_Incluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluirr.png"))); // NOI18N
-        jBtnTam_Incluir1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnTam_IncluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluirr.png"))); // NOI18N
+        jBtnTam_IncluirProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnTam_Incluir1ActionPerformed(evt);
+                jBtnTam_IncluirProdActionPerformed(evt);
             }
         });
 
-        jBtnTam_Alterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterarr (1).png"))); // NOI18N
-        jBtnTam_Alterar1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnTam_AlterarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterarr (1).png"))); // NOI18N
+        jBtnTam_AlterarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnTam_Alterar1ActionPerformed(evt);
+                jBtnTam_AlterarProdActionPerformed(evt);
             }
         });
 
-        jBtnTam_Excluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluirr.png"))); // NOI18N
-        jBtnTam_Excluir1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnTam_ExcluirProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/excluirr.png"))); // NOI18N
+        jBtnTam_ExcluirProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnTam_Excluir1ActionPerformed(evt);
+                jBtnTam_ExcluirProdActionPerformed(evt);
             }
         });
 
@@ -240,10 +240,10 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                             .addComponent(jScrollPane1))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBtnTam_Excluir1)
+                            .addComponent(jBtnTam_ExcluirProd)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jBtnTam_Incluir1)
-                                .addComponent(jBtnTam_Alterar1)))
+                                .addComponent(jBtnTam_IncluirProd)
+                                .addComponent(jBtnTam_AlterarProd)))
                         .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
@@ -288,21 +288,25 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jBtnTam_Incluir1)
+                        .addComponent(jBtnTam_IncluirProd)
                         .addGap(37, 37, 37)
-                        .addComponent(jBtnTam_Alterar1)
+                        .addComponent(jBtnTam_AlterarProd)
                         .addGap(44, 44, 44)
-                        .addComponent(jBtnTam_Excluir1)
+                        .addComponent(jBtnTam_ExcluirProd)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public VendasTam viewBean() throws ParseException {
+    public VendasTam viewBean() {
         VendasTam vendas = new VendasTam();
 
         vendas.setIdvendaTam(Tam_Util.strToInt(jTxtTam_Codigo.getText()));
-        vendas.setDataVendaTam(Tam_Util.strToDate(jFmtDataVenda_Tam.getText()));
+        try {
+            vendas.setDataVendaTam(Tam_Util.strToDate(jFmtDataVenda_Tam.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(Tam_JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         vendas.setTotal_tam(Tam_Util.strToDouble(jTxtTam_Total.getText()));
         vendas.setClienteTam((ClienteTam) jCbxCliente_Tam.getSelectedItem());
         vendas.setVendedorTam((VendedorTam) jCbxVendedor_Tam.getSelectedItem());
@@ -321,9 +325,7 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         jTxtTam_Total.setText(Tam_Util.doubleToString(vendas.getTotal_tam()));
         jCbxCliente_Tam.setSelectedItem(vendas.getClienteTam());
         jCbxVendedor_Tam.setSelectedItem(vendas.getVendedorTam());
-        
 
-        
         VendasProdutosDAO dao = new VendasProdutosDAO();
         List lista = (List) dao.listProdutos(vendas);
         tam_ControllerVendasProdutos.setList(lista);
@@ -338,7 +340,7 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
         // TODO add your handling code here:
-       Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Confirmar, jBtnTam_Cancelar);
         Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
 
         incluir = false;
@@ -348,94 +350,87 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
     private void jBtnTam_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirActionPerformed
         // TODO add your handling code here:
         if (Tam_Util.perguntar("Deseja excluir ?") == true) {
-            try {
-                VendasDAO pedidosDAO = new VendasDAO();
-                VendasProdutosDAO pedidosProdutosDAO = new VendasProdutosDAO();
-                for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
-                    VendasProdutosTam pedidosProdutos = tam_ControllerVendasProdutos.getBean(ind);
-                    pedidosProdutosDAO.delete(pedidosProdutos);
-                }
-                pedidosDAO.delete(viewBean());
-            } catch (ParseException ex) {
-                Logger.getLogger(Tam_JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
+            VendasDAO vendasDAO = new VendasDAO();
+            VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                VendasProdutosTam pedidosProdutos = tam_ControllerVendasProdutos.getBean(ind);
+                vendasProdutosDAO.delete(pedidosProdutos);
             }
-            }
+            vendasDAO.delete(viewBean());
+        }
         Tam_Util.limpar(
-                    jTxtTam_Codigo,
-                    jFmtDataVenda_Tam,
-                    jCbxCliente_Tam,
-                    jCbxVendedor_Tam,
-                    jTxtTam_Total
-            );
-        Tam_Util.habilitar(false,  jBtnTam_Confirmar,  jBtnTam_Cancelar , jBtnTam_Alterar, jBtnTam_Excluir);
-        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Incluir, jBtnTam_Pesquisar );
-       
+                jTxtTam_Codigo,
+                jFmtDataVenda_Tam,
+                jCbxCliente_Tam,
+                jCbxVendedor_Tam,
+                jTxtTam_Total
+        );
+        Tam_Util.habilitar(false, jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Incluir, jBtnTam_Pesquisar);
+
         tam_ControllerVendasProdutos.setList(new ArrayList());
     }//GEN-LAST:event_jBtnTam_ExcluirActionPerformed
 
     private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
-        try {
-            // TODO add your handling code here:VendasDAO pedidosDAO = new VendasDAO();
-            VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
-            VendasDAO vendasDAO = new VendasDAO();
-            VendasTam vendas = viewBean();
+        // TODO add your handling code here:VendasDAO vendasDAO = new VendasDAO();
+        tam_ControllerVendasProdutos.setList(new ArrayList());
 
-            if (incluir == true) {
-                vendasDAO.insert(vendas);
+        VendasDAO vendasDAO = new VendasDAO();
+        VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
+        VendasTam vendas = viewBean();
 
-                for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
-                    VendasProdutosTam vendasProdutos = tam_ControllerVendasProdutos.getBean(ind);
-                    vendasProdutos.setVendasTam(vendas);
-                    vendasProdutosDAO.insert(vendasProdutos);
-                }
-
-            } else {
-                vendasDAO.update(vendas);
+        if (incluir == true) {
+            vendasDAO.insert(vendas);
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                VendasProdutosTam vendasProdutos = tam_ControllerVendasProdutos.getBean(ind);
+                vendasProdutos.setVendasTam(vendas);
+                vendasProdutosDAO.insert(vendasProdutos);
             }
-
-            Tam_Util.habilitar(false,
-                    jTxtTam_Codigo,
-                    jFmtDataVenda_Tam,
-                    jCbxCliente_Tam,
-                    jCbxVendedor_Tam,
-                    jTxtTam_Total,
-                    jBtnTam_Confirmar,
-                    jBtnTam_Cancelar
-            );
-
-            Tam_Util.habilitar(true,
-                    jBtnTam_Incluir,
-                    jBtnTam_Pesquisar
-            );
-
-            Tam_Util.limpar(
-                    jTxtTam_Codigo,
-                    jFmtDataVenda_Tam,
-                    jCbxCliente_Tam,
-                    jCbxVendedor_Tam,
-                    jTxtTam_Total
-            );
-
-            tam_ControllerVendasProdutos.setList(new ArrayList());
-        } catch (ParseException ex) {
-            Logger.getLogger(Tam_JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            vendasDAO.update(vendas);
+            vendasProdutosDAO.deleteProdutos(vendas);
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                VendasProdutosTam vendasProdutos = tam_ControllerVendasProdutos.getBean(ind);
+                vendasProdutos.setVendasTam(vendas);
+                vendasProdutosDAO.insert(vendasProdutos);
+            }
         }
+
+        tam_ControllerVendasProdutos.setList(new ArrayList());
+
+        Tam_Util.habilitar(false,
+                jTxtTam_Codigo,
+                jFmtDataVenda_Tam,
+                jCbxCliente_Tam,
+                jCbxVendedor_Tam,
+                jTxtTam_Total,
+                jBtnTam_Confirmar,
+                jBtnTam_Cancelar
+        );
+        Tam_Util.habilitar(true,
+                jBtnTam_Incluir,
+                jBtnTam_Pesquisar
+        );
+        Tam_Util.limpar(
+                jTxtTam_Codigo,
+                jFmtDataVenda_Tam,
+                jCbxCliente_Tam,
+                jCbxVendedor_Tam,
+                jTxtTam_Total
+        );
+
 
     }//GEN-LAST:event_jBtnTam_ConfirmarActionPerformed
 
     private void jBtnTam_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_CancelarActionPerformed
         // TODO add your handling code here:
 
-        Tam_Util.limpar(
-                    jTxtTam_Codigo,
-                    jFmtDataVenda_Tam,
-                    jCbxCliente_Tam,
-                    jCbxVendedor_Tam,
-                    jTxtTam_Total
-            );
-        Tam_Util.habilitar(false,jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam,  jBtnTam_Confirmar,  jBtnTam_Cancelar , jBtnTam_Alterar, jBtnTam_Excluir);
-        Tam_Util.habilitar(true,  jBtnTam_Incluir, jBtnTam_Pesquisar );
-         
+        Tam_Util.habilitar(false, jTxtTam_Codigo, jFmtDataVenda_Tam, jCbxCliente_Tam,
+                jCbxVendedor_Tam, jTxtTam_Total,
+                jBtnTam_Confirmar, jBtnTam_Cancelar);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.limpar(jTxtTam_Codigo, jFmtDataVenda_Tam, jCbxCliente_Tam, jCbxVendedor_Tam, jTxtTam_Total);
+
         tam_ControllerVendasProdutos.setList(new ArrayList());
     }//GEN-LAST:event_jBtnTam_CancelarActionPerformed
 
@@ -445,7 +440,6 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         jDlgVendas.setTelaAnterior(this);
         jDlgVendas.setVisible(true);
         Tam_Util.habilitar(false,
-  
                 jBtnTam_Confirmar,
                 jBtnTam_Cancelar,
                 jBtnTam_Pesquisar,
@@ -458,20 +452,33 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         );
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
 
-    private void jBtnTam_Incluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_Incluir1ActionPerformed
+    private void jBtnTam_IncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirProdActionPerformed
         // TODO add your handling code here:
+
         Tam_JDlgVendasProdutos jDlgProduto = new Tam_JDlgVendasProdutos(null, true);
-        jDlgProduto.setTelaAnterior(this);
+        jDlgProduto.setTelaAnterior(this, null);
         jDlgProduto.setVisible(true);
-    }//GEN-LAST:event_jBtnTam_Incluir1ActionPerformed
+    }//GEN-LAST:event_jBtnTam_IncluirProdActionPerformed
 
-    private void jBtnTam_Alterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_Alterar1ActionPerformed
+    private void jBtnTam_AlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarProdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnTam_Alterar1ActionPerformed
+        Tam_JDlgVendasProdutos jDlgPedidosProdutos = new Tam_JDlgVendasProdutos(null, true);
+        VendasProdutosTam vendProd = tam_ControllerVendasProdutos.getBean(jTable1.getSelectedRow());
+        jDlgPedidosProdutos.setTelaAnterior(this, vendProd);
+        jDlgPedidosProdutos.setVisible(true);
+    }//GEN-LAST:event_jBtnTam_AlterarProdActionPerformed
 
-    private void jBtnTam_Excluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_Excluir1ActionPerformed
+    private void jBtnTam_ExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirProdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnTam_Excluir1ActionPerformed
+        if (jTable1.getSelectedRow() == -1) {
+            Tam_Util.mensagem("Oh seu loco, precisa selecionar uma linha.");
+        } else {
+            if (Tam_Util.perguntar("Deseja excluir o produto ?") == true) {
+                tam_ControllerVendasProdutos.removeBean(jTable1.getSelectedRow());
+            }
+        }
+        tam_ControllerVendasProdutos.setList(new ArrayList());
+    }//GEN-LAST:event_jBtnTam_ExcluirProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,13 +527,13 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnTam_Alterar;
-    private javax.swing.JButton jBtnTam_Alterar1;
+    private javax.swing.JButton jBtnTam_AlterarProd;
     private javax.swing.JButton jBtnTam_Cancelar;
     private javax.swing.JButton jBtnTam_Confirmar;
     private javax.swing.JButton jBtnTam_Excluir;
-    private javax.swing.JButton jBtnTam_Excluir1;
+    private javax.swing.JButton jBtnTam_ExcluirProd;
     private javax.swing.JButton jBtnTam_Incluir;
-    private javax.swing.JButton jBtnTam_Incluir1;
+    private javax.swing.JButton jBtnTam_IncluirProd;
     private javax.swing.JButton jBtnTam_Pesquisar;
     private javax.swing.JComboBox<ClienteTam> jCbxCliente_Tam;
     private javax.swing.JComboBox<VendedorTam> jCbxVendedor_Tam;
