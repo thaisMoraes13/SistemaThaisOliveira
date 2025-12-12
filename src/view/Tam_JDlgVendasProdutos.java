@@ -178,7 +178,12 @@ public class Tam_JDlgVendasProdutos extends javax.swing.JDialog {
         vendasProdutos.setFormaPagamentoTam(1);
         vendasProdutos.setTipoDescontoTam("desconto");
 
-        jDlgVendas.tam_ControllerVendasProdutos.addBean(vendasProdutos);
+        if (incluir == true) {
+            jDlgVendas.tam_ControllerVendasProdutos.addBean(vendasProdutos);
+        } else {
+            jDlgVendas.tam_ControllerVendasProdutos.removeBean(jDlgVendas.getjTable1().getSelectedRow());
+            jDlgVendas.tam_ControllerVendasProdutos.addBean(vendasProdutos);
+        }
         setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 

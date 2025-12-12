@@ -7,8 +7,10 @@ package dao;
 
 import bean.ClienteTam;
 import bean.VendasTam;
+import bean.VendedorTam;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -33,30 +35,36 @@ public class VendasDAO extends AbstractDAO {
         session.getTransaction().commit();
     }
 
-    public Object listId(int id) {
+    public Object listCliente(ClienteTam clientes) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendasTam.class);
-        criteria.add(Restrictions.like("idvendaTam",  id ));
+        criteria.add(Restrictions.eq("clienteTam", clientes));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
 
-    public Object listTotal(double TOTAL) {
+    public Object listVendedor(String vendedor) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendasTam.class);
-        criteria.add(Restrictions.ge("total_tam", TOTAL ));
+        
+        criteria.createAlias("vendedorTam", "v");
+        criteria.add(Restrictions.like("v.nomeTam", "%" + vendedor + "%", MatchMode.ANYWHERE));
 
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
 
-    public Object listIdTotal(int id, double TOTAL) {
+    public Object listClienteVendedor(String vendedor, ClienteTam clientes) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendasTam.class);
-        criteria.add(Restrictions.like("nomeTam", id ));
-        criteria.add(Restrictions.ge("total_tam", TOTAL ));
+
+        criteria.add(Restrictions.eq("clienteTam", clientes));
+
+        criteria.createAlias("vendedorTam", "v");
+        criteria.add(Restrictions.like("v.nomeTam", "%" + vendedor + "%", MatchMode.ANYWHERE));
+
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

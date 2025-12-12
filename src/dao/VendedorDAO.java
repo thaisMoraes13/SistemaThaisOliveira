@@ -61,21 +61,21 @@ public class VendedorDAO extends AbstractDAO {
         return lista;
     }
 
-    public Object listNumero(String VU) {
+    public Object listEmail(String VU) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendedorTam.class);
-        criteria.add(Restrictions.like("celularTam", "%" + VU + "%"));
+        criteria.add(Restrictions.like("emailTam", "%" + VU + "%"));
 
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
 
-    public Object listNomeNumero(String nome, String VU) {
+    public Object listNomeEmail(String nome, String VU) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendedorTam.class);
         criteria.add(Restrictions.like("nomeTam", "%" + nome + "%"));
-        criteria.add(Restrictions.like("celularTam", "%" + VU + "%"));
+        criteria.add(Restrictions.like("emailTam", "%" + VU + "%"));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

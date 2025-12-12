@@ -43,10 +43,10 @@ public class Tam_ControllerConsultasVenda extends AbstractTableModel {
         VendasTam vend = (VendasTam) lstVendas.get( rowIndex);
         if ( columnIndex == 0 ){
             return vend.getIdvendaTam();
-        } else if (columnIndex ==1) {
-            return vend.getClienteTam().getNomeTam();        
         } else if (columnIndex ==2) {
-            return vend.getVendedorTam().getNomeTam();
+            return vend.getClienteTam();        
+        } else if (columnIndex ==1) {
+            return vend.getVendedorTam();
         } 
         return "";
     }
@@ -55,9 +55,9 @@ public class Tam_ControllerConsultasVenda extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         if ( columnIndex == 0) {
             return "Código";
-        } else if ( columnIndex == 1) {
-            return "Nome Cliente";         
         } else if ( columnIndex == 2) {
+            return "Nome Cliente";         
+        } else if ( columnIndex == 1) {
             return "Nome Vendedor";
         } 
         return "";

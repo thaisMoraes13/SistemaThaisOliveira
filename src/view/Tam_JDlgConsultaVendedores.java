@@ -77,7 +77,7 @@ public class Tam_JDlgConsultaVendedores extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
-        jLabel2.setText("Número");
+        jLabel2.setText("Email");
 
         jBtnConsulta.setText("Conusultar");
         jBtnConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -152,11 +152,11 @@ public class Tam_JDlgConsultaVendedores extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (jTxtNome.getText().isEmpty() == false && jTxtValor.getText().isEmpty() == false) {
 
-            List lista = (List) vendorDAO.listNomeNumero(jTxtNome.getText(), jTxtValor.getText());
+            List lista = (List) vendorDAO.listNomeEmail(jTxtNome.getText(), jTxtValor.getText());
             controllerConsultasVendor.setList(lista);
 
         } else if (jTxtValor.getText().isEmpty() == false) {
-            List lista = (List) vendorDAO.listNumero(jTxtValor.getText());
+            List lista = (List) vendorDAO.listEmail(jTxtValor.getText());
             controllerConsultasVendor.setList(lista);
         } else if (jTxtNome.getText().isEmpty() == false) {
             List lista = (List) vendorDAO.listNome(jTxtNome.getText());

@@ -432,9 +432,10 @@ public class Tam_JDlgCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
         Tam_Util.habilitar(false, jTxtTam_Nome, jFmtTam_Cpf,
                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
-                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,
+                jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade, jTxtTam_Codigo,
                 jTxtTam_Endereco, jTxtTam_Bairro, jFmtTam_N, jTxtTam_Celular,
                 jCboTam_EstadoCivil, jTxtTam_Profissao, jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir);
+        Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Pesquisar);
         Tam_Util.limpar(jTxtTam_Codigo, jTxtTam_Nome, jFmtTam_Cpf,
                 jFmtTam_DataNascimento, jTxtTam_Email, jFmtTam_Rg,
                 jCboTam_Sexo, jTxtTam_Cidade, jTxtTam_Nacionalidade,

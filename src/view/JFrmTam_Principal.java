@@ -34,7 +34,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         jbtnProd = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jBtnVendorConsultaTam = new javax.swing.JButton();
-        jbtnProColsultaTam = new javax.swing.JButton();
+        jbtnVEndColsultaTam = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMnuTam_Usuarios = new javax.swing.JMenuItem();
@@ -48,6 +48,7 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         jMnProdConsulta = new javax.swing.JMenuItem();
         jMnuClienConsulta = new javax.swing.JMenuItem();
         jMunVendorConsulta = new javax.swing.JMenuItem();
+        jMnuVendasConsulta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,16 +99,16 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(jBtnVendorConsultaTam);
 
-        jbtnProColsultaTam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-sale-price-tag-48.png"))); // NOI18N
-        jbtnProColsultaTam.setFocusable(false);
-        jbtnProColsultaTam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbtnProColsultaTam.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbtnProColsultaTam.addActionListener(new java.awt.event.ActionListener() {
+        jbtnVEndColsultaTam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-sale-price-tag-48.png"))); // NOI18N
+        jbtnVEndColsultaTam.setFocusable(false);
+        jbtnVEndColsultaTam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnVEndColsultaTam.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnVEndColsultaTam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnProColsultaTamActionPerformed(evt);
+                jbtnVEndColsultaTamActionPerformed(evt);
             }
         });
-        jToolBar1.add(jbtnProColsultaTam);
+        jToolBar1.add(jbtnVEndColsultaTam);
 
         jMenu1.setText("Cadastro");
 
@@ -206,6 +207,15 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         });
         jMenu3.add(jMunVendorConsulta);
 
+        jMnuVendasConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-sale-price-tag-48.png"))); // NOI18N
+        jMnuVendasConsulta.setText("Venda");
+        jMnuVendasConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuVendasConsultaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMnuVendasConsulta);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -278,13 +288,13 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
 
     private void jMnProdConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProdConsultaActionPerformed
         // TODO add your handling code here:
-        Tam_JDlgConsultaProdutos jDlgTam_Vendas = new Tam_JDlgConsultaProdutos(this, true);
-        jDlgTam_Vendas.setVisible(true);
+        Tam_JDlgConsultaProdutos jDlgTam_Prod = new Tam_JDlgConsultaProdutos(this, true);
+        jDlgTam_Prod.setVisible(true);
     }//GEN-LAST:event_jMnProdConsultaActionPerformed
 
     private void jMnuClienConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuClienConsultaActionPerformed
         // TODO add your handling code here:
-        Tam_JDlgConsultaProdutos jDlgTam_Vendas = new Tam_JDlgConsultaProdutos(this, true);
+        Tam_JDlgConsultaClientes jDlgTam_Vendas = new Tam_JDlgConsultaClientes(this, true);
         jDlgTam_Vendas.setVisible(true);
     }//GEN-LAST:event_jMnuClienConsultaActionPerformed
 
@@ -294,16 +304,22 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
         jDlgTam_Vendor.setVisible(true);
     }//GEN-LAST:event_jMunVendorConsultaActionPerformed
 
-    private void jbtnProColsultaTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProColsultaTamActionPerformed
+    private void jbtnVEndColsultaTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVEndColsultaTamActionPerformed
         // TODO add your handling code here:
-        jMnProdConsultaActionPerformed(null);
-    }//GEN-LAST:event_jbtnProColsultaTamActionPerformed
+        jMnuVendasConsultaActionPerformed(null);
+    }//GEN-LAST:event_jbtnVEndColsultaTamActionPerformed
 
     private void jBtnVendorConsultaTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVendorConsultaTamActionPerformed
         // TODO add your handling code here:
         jMunVendorConsultaActionPerformed(null);
 
     }//GEN-LAST:event_jBtnVendorConsultaTamActionPerformed
+
+    private void jMnuVendasConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendasConsultaActionPerformed
+        // TODO add your handling code here:
+        Tam_JDlgConsultaVendas jDlgTam_Vendasr = new Tam_JDlgConsultaVendas(this, true);
+        jDlgTam_Vendasr.setVisible(true);
+    }//GEN-LAST:event_jMnuVendasConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,10 +372,11 @@ public class JFrmTam_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnuTam_Usuarios;
     private javax.swing.JMenuItem jMnuTam_Venda;
     private javax.swing.JMenuItem jMnuTam_Vendedor;
+    private javax.swing.JMenuItem jMnuVendasConsulta;
     private javax.swing.JMenuItem jMunVendorConsulta;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JButton jbtnProColsultaTam;
     private javax.swing.JButton jbtnProd;
+    private javax.swing.JButton jbtnVEndColsultaTam;
     // End of variables declaration//GEN-END:variables
 }

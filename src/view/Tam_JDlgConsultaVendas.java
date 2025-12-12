@@ -4,9 +4,13 @@
  */
 package view;
 
+import bean.ClienteTam;
+import dao.ClientesDAO;
 import dao.ProdutosDAO;
+import dao.UsuariosDAO;
 import dao.VendasDAO;
 import dao.VendedorDAO;
+import java.util.ArrayList;
 import java.util.List;
 import tools.Tam_Util;
 
@@ -23,12 +27,18 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Pesquisar Vendedor");
+        setTitle("Pesquisar Vendas");
         controllerConsultasVendor = new Tam_ControllerConsultasVenda();
         vendorDAO = new VendasDAO();
         List lista = (List) vendorDAO.listAll();
         controllerConsultasVendor.setList(lista);
         jTable1.setModel(controllerConsultasVendor);
+        ClientesDAO clienteTam = new ClientesDAO();
+        ArrayList listaC = (ArrayList) clienteTam.listAll();
+        for (Object object : listaC) {
+            jCxbCliente.addItem((ClienteTam) object);
+        }
+        jCxbCliente.setSelectedIndex(-1);
     }
 
     /**
@@ -44,10 +54,10 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTxtNome = new javax.swing.JTextField();
-        jTxtValor = new javax.swing.JTextField();
+        jTxtVendedor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsulta = new javax.swing.JButton();
+        jCxbCliente = new javax.swing.JComboBox<ClienteTam>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,9 +86,9 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("ID");
+        jLabel1.setText("Vendedor");
 
-        jLabel2.setText("Total (Maior que)");
+        jLabel2.setText("Clitente");
 
         jBtnConsulta.setText("Conusultar");
         jBtnConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -101,13 +111,13 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTxtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCxbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
                                 .addComponent(jBtnConsulta)))))
                 .addContainerGap())
         );
@@ -119,13 +129,13 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCxbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnConsulta))))
+                        .addComponent(jBtnConsulta)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -151,17 +161,19 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
 
     private void jBtnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultaActionPerformed
         // TODO add your handling code here:
-        if (jTxtNome.getText().isEmpty() == false && jTxtValor.getText().isEmpty() == false) {
+        if (jTxtVendedor.getText().isEmpty() == false && (jCxbCliente.getSelectedIndex() != -1)) {
 
-            List lista = (List) vendorDAO.listIdTotal(Tam_Util.strToInt(jTxtNome.getText()), Tam_Util.strToDouble(jTxtValor.getText()));                   
+            List lista = (List) vendorDAO.listClienteVendedor(jTxtVendedor.getText(), ((ClienteTam) jCxbCliente.getSelectedItem()));
             controllerConsultasVendor.setList(lista);
 
-        } else if (jTxtValor.getText().isEmpty() == false) {
-            List lista = (List) vendorDAO.listId(Tam_Util.strToInt(jTxtValor.getText()));
+        } else if (jTxtVendedor.getText().isEmpty() == false) {
+            List lista = (List) vendorDAO.listVendedor(jTxtVendedor.getText());
             controllerConsultasVendor.setList(lista);
-        } else if (jTxtNome.getText().isEmpty() == false) {
-            List lista = (List) vendorDAO.listTotal(Tam_Util.strToDouble(jTxtNome.getText()));
+        } else if (jCxbCliente.getSelectedIndex() != -1) {
+            List lista = (List) vendorDAO.listCliente(
+                    ((ClienteTam) jCxbCliente.getSelectedItem()));
             controllerConsultasVendor.setList(lista);
+
         } else {
             List lista = (List) vendorDAO.listAll();
             controllerConsultasVendor.setList(lista);
@@ -276,11 +288,11 @@ public class Tam_JDlgConsultaVendas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsulta;
     private javax.swing.JButton jBtnOk;
+    private javax.swing.JComboBox<ClienteTam> jCxbCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtNome;
-    private javax.swing.JTextField jTxtValor;
+    private javax.swing.JTextField jTxtVendedor;
     // End of variables declaration//GEN-END:variables
 }

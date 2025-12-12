@@ -20,6 +20,7 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
     public JDlgLogin_Tam(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -98,6 +99,7 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
             if (u.getApelido().equals(usuarioDigitado) && u.getSenha().equals(senhaDigitada)) {
 
                 javax.swing.JOptionPane.showMessageDialog(this, "Login OK, bem-vindo " + u.getNome());
+                new JFrmTam_Principal().setVisible(true);
                 dispose();
                 return;
             }

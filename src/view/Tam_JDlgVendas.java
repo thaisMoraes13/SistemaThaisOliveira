@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Tam_Util;
 
 /**
  *
- * @author u07431666128
+ * @author user
  */
 public class Tam_JDlgVendas extends javax.swing.JDialog {
 
@@ -39,9 +40,9 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Cadastro de Usuários");
+        setTitle("Cadastro de Vendas");
         Tam_Util.habilitar(false, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam,
-                jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir);
+                jBtnTam_Confirmar, jBtnTam_Cancelar, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_AlterarProd, jBtnTam_ExcluirProd, jBtnTam_IncluirProd);
         jCbxCliente_Tam.removeAllItems();
 
         ClientesDAO clienteTam = new ClientesDAO();
@@ -233,12 +234,13 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jCbxVendedor_Tam, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTxtTam_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTxtTam_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 58, Short.MAX_VALUE))
                             .addComponent(jScrollPane1))
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBtnTam_ExcluirProd)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +279,7 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBtnTam_Incluir)
                             .addComponent(jBtnTam_Alterar)
@@ -293,7 +295,7 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                         .addComponent(jBtnTam_AlterarProd)
                         .addGap(44, 44, 44)
                         .addComponent(jBtnTam_ExcluirProd)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(269, Short.MAX_VALUE))))
         );
 
         pack();
@@ -301,13 +303,19 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
     public VendasTam viewBean() {
         VendasTam vendas = new VendasTam();
 
+        String valorStr = jTxtTam_Total.getText()
+                .replace("R$", "")
+                .replace(".", "")
+                .replace(",", ".")
+                .trim();
+
         vendas.setIdvendaTam(Tam_Util.strToInt(jTxtTam_Codigo.getText()));
         try {
             vendas.setDataVendaTam(Tam_Util.strToDate(jFmtDataVenda_Tam.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(Tam_JDlgVendas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        vendas.setTotal_tam(Tam_Util.strToDouble(jTxtTam_Total.getText()));
+        vendas.setTotal_tam(Tam_Util.strToDouble(valorStr));
         vendas.setClienteTam((ClienteTam) jCbxCliente_Tam.getSelectedItem());
         vendas.setVendedorTam((VendedorTam) jCbxVendedor_Tam.getSelectedItem());
         vendas.setFormaPagamentoTam(1);
@@ -316,6 +324,16 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         vendas.setTipoVendaTam("normal");
 
         return vendas;
+    }
+
+    private void calcularTotal() {
+        double total = 0;
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            VendasProdutosTam produto = tam_ControllerVendasProdutos.getBean(i);
+            total += Tam_Util.strToInt(produto.getQuantidadeProdutoTam()) * Tam_Util.strToDouble(produto.getValorUnitarioTam());
+        }
+
+        jTxtTam_Total.setText("R$ " + String.format("%,.2f", total));
     }
 
     public void beanView(VendasTam vendas) {
@@ -332,16 +350,67 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
     }
     private void jBtnTam_IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Confirmar, jBtnTam_Cancelar);
-        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.habilitar(
+                true,
+                jBtnTam_AlterarProd,
+                jBtnTam_ExcluirProd,
+                jBtnTam_IncluirProd,
+                jBtnTam_Confirmar,
+                jBtnTam_Cancelar,
+                jTxtTam_Codigo,
+                jFmtDataVenda_Tam,
+                jCbxCliente_Tam,
+                jTxtTam_Total,
+                jCbxVendedor_Tam
+        );
+
+        Tam_Util.limpar(
+                jTxtTam_Codigo,
+                jFmtDataVenda_Tam,
+                jCbxCliente_Tam,
+                jTxtTam_Total,
+                jCbxVendedor_Tam
+        );
+
+        Tam_Util.habilitar(
+                false,
+                jBtnTam_Incluir,
+                jBtnTam_Excluir,
+                jBtnTam_Alterar,
+                jBtnTam_Pesquisar,
+                jTxtTam_Total
+        );
 
         incluir = true;
     }//GEN-LAST:event_jBtnTam_IncluirActionPerformed
 
     private void jBtnTam_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarActionPerformed
         // TODO add your handling code here:
-        Tam_Util.habilitar(true, jTxtTam_Codigo, jFmtDataVenda_Tam, jTxtTam_Total, jCbxCliente_Tam, jCbxVendedor_Tam, jBtnTam_Confirmar, jBtnTam_Cancelar);
-        Tam_Util.habilitar(false, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
+        Tam_Util.habilitar(
+                true,
+                jBtnTam_AlterarProd,
+                jBtnTam_ExcluirProd,
+                jBtnTam_IncluirProd,
+                jBtnTam_Confirmar,
+                jBtnTam_Cancelar,
+                jFmtDataVenda_Tam,
+                jCbxCliente_Tam,
+                jTxtTam_Total,
+                jCbxVendedor_Tam
+        );
+
+        Tam_Util.habilitar(
+                false,
+                jBtnTam_Incluir,
+                jBtnTam_Excluir,
+                jBtnTam_Alterar,
+                jBtnTam_Pesquisar
+        );
+
+        Tam_Util.habilitar(
+                false,
+                jTxtTam_Codigo
+        );
 
         incluir = false;
 
@@ -448,37 +517,49 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
 
         Tam_Util.habilitar(true,
                 jBtnTam_Excluir,
-                jBtnTam_Alterar
+                jBtnTam_Alterar,
+                jBtnTam_AlterarProd,
+                jBtnTam_ExcluirProd,
+                jBtnTam_IncluirProd
         );
     }//GEN-LAST:event_jBtnTam_PesquisarActionPerformed
 
     private void jBtnTam_IncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirProdActionPerformed
         // TODO add your handling code here:
- 
-       Tam_JDlgVendasProdutos jDlgProduto = new Tam_JDlgVendasProdutos(null, true);
+
+        Tam_JDlgVendasProdutos jDlgProduto = new Tam_JDlgVendasProdutos(null, true);
         jDlgProduto.setTelaAnterior(this, null);
         jDlgProduto.setVisible(true);
+        calcularTotal();
     }//GEN-LAST:event_jBtnTam_IncluirProdActionPerformed
 
     private void jBtnTam_AlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_AlterarProdActionPerformed
         // TODO add your handling code here:
-        Tam_JDlgVendasProdutos jDlgPedidosProdutos = new Tam_JDlgVendasProdutos(null, true);
-        VendasProdutosTam vendProd = tam_ControllerVendasProdutos.getBean(jTable1.getSelectedRow());
-        jDlgPedidosProdutos.setTelaAnterior(this, vendProd);
-        jDlgPedidosProdutos.setVisible(true);
+        if (jTable1.getSelectedRow() == -1) {
+            Tam_Util.mensagem("Precisa selecionar uma linha!");
+        }
+        Tam_JDlgVendasProdutos jDlgVendasProdutos = new Tam_JDlgVendasProdutos(null, true);
+        VendasProdutosTam vendasProdutos = tam_ControllerVendasProdutos.getBean(jTable1.getSelectedRow());
+        jDlgVendasProdutos.setTelaAnterior(this, vendasProdutos);
+        jDlgVendasProdutos.setVisible(true);
+        calcularTotal();
     }//GEN-LAST:event_jBtnTam_AlterarProdActionPerformed
 
     private void jBtnTam_ExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ExcluirProdActionPerformed
         // TODO add your handling code here:
         if (jTable1.getSelectedRow() == -1) {
-            Tam_Util.mensagem("Oh seu loco, precisa selecionar uma linha.");
+            Tam_Util.mensagem("Precisa selecionar uma linha!");
         } else {
             if (Tam_Util.perguntar("Deseja excluir o produto ?") == true) {
                 tam_ControllerVendasProdutos.removeBean(jTable1.getSelectedRow());
+                calcularTotal();
             }
         }
-        tam_ControllerVendasProdutos.setList(new ArrayList());
+        calcularTotal();
     }//GEN-LAST:event_jBtnTam_ExcluirProdActionPerformed
+    public JTable getjTable1() {
+        return jTable1;
+    }
 
     /**
      * @param args the command line arguments
