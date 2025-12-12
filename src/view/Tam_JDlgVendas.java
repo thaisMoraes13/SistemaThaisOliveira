@@ -442,7 +442,6 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnTam_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_ConfirmarActionPerformed
         // TODO add your handling code here:VendasDAO vendasDAO = new VendasDAO();
-        tam_ControllerVendasProdutos.setList(new ArrayList());
 
         VendasDAO vendasDAO = new VendasDAO();
         VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
@@ -495,7 +494,7 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         Tam_Util.habilitar(false, jTxtTam_Codigo, jFmtDataVenda_Tam, jCbxCliente_Tam,
-                jCbxVendedor_Tam, jTxtTam_Total,
+                jCbxVendedor_Tam, jTxtTam_Total, jBtnTam_AlterarProd, jBtnTam_ExcluirProd, jBtnTam_IncluirProd,
                 jBtnTam_Confirmar, jBtnTam_Cancelar);
         Tam_Util.habilitar(true, jBtnTam_Incluir, jBtnTam_Alterar, jBtnTam_Excluir, jBtnTam_Pesquisar);
         Tam_Util.limpar(jTxtTam_Codigo, jFmtDataVenda_Tam, jCbxCliente_Tam, jCbxVendedor_Tam, jTxtTam_Total);
@@ -509,13 +508,14 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
         jDlgVendas.setTelaAnterior(this);
         jDlgVendas.setVisible(true);
         Tam_Util.habilitar(false,
-                jBtnTam_Confirmar,
+                
                 jBtnTam_Cancelar,
                 jBtnTam_Pesquisar,
                 jBtnTam_Incluir
         );
 
         Tam_Util.habilitar(true,
+                jBtnTam_Confirmar,
                 jBtnTam_Excluir,
                 jBtnTam_Alterar,
                 jBtnTam_AlterarProd,

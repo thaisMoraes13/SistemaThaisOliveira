@@ -5,6 +5,8 @@ package bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,7 +45,8 @@ public class VendasProdutosTam  implements java.io.Serializable {
        this.tipoDescontoTam = tipoDescontoTam;
     }
    
-     @Id 
+   @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     
     @Column(name="idVenda_produto_tam", unique=true, nullable=false)
