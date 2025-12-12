@@ -454,8 +454,8 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnTam_IncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTam_IncluirProdActionPerformed
         // TODO add your handling code here:
-
-        Tam_JDlgVendasProdutos jDlgProduto = new Tam_JDlgVendasProdutos(null, true);
+ 
+       Tam_JDlgVendasProdutos jDlgProduto = new Tam_JDlgVendasProdutos(null, true);
         jDlgProduto.setTelaAnterior(this, null);
         jDlgProduto.setVisible(true);
     }//GEN-LAST:event_jBtnTam_IncluirProdActionPerformed

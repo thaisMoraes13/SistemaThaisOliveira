@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.UsuariosTam;
+import dao.UsuariosDAO;
+
 /**
  *
  * @author user
@@ -32,23 +35,20 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
         jBtnOK = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTxtSenha = new javax.swing.JTextField();
+        jPwfSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTxtLogin.setText("   ");
-
         jBtnOK.setText("OK");
+        jBtnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOKActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Login");
 
         jLabel2.setText("Senha");
-
-        jTxtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtSenhaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,7 +61,7 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jTxtLogin)
                     .addComponent(jBtnOK, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jTxtSenha))
+                    .addComponent(jPwfSenha))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,7 +74,7 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPwfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBtnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -83,10 +83,28 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSenhaActionPerformed
+    private void jBtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOKActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtSenhaActionPerformed
+        logar();
+    }//GEN-LAST:event_jBtnOKActionPerformed
+    private void logar() {
+        String usuarioDigitado = jTxtLogin.getText();
+        String senhaDigitada = new String(jPwfSenha.getPassword());
 
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        java.util.List<UsuariosTam> lista = (java.util.List<UsuariosTam>) usuariosDAO.listAll();
+
+        for (UsuariosTam u : lista) {
+            if (u.getApelido().equals(usuarioDigitado) && u.getSenha().equals(senhaDigitada)) {
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Login OK, bem-vindo " + u.getNome());
+                dispose();
+                return;
+            }
+        }
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Usuário ou senha inválidos.");
+    }
     /**
      * @param args the command line arguments
      */
@@ -134,7 +152,7 @@ public class JDlgLogin_Tam extends javax.swing.JDialog {
     private javax.swing.JButton jBtnOK;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField jPwfSenha;
     private javax.swing.JTextField jTxtLogin;
-    private javax.swing.JTextField jTxtSenha;
     // End of variables declaration//GEN-END:variables
 }

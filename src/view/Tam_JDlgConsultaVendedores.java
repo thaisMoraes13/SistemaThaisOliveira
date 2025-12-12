@@ -5,6 +5,7 @@
 package view;
 
 import dao.ProdutosDAO;
+import dao.VendedorDAO;
 import java.util.List;
 import tools.Tam_Util;
 
@@ -12,21 +13,21 @@ import tools.Tam_Util;
  *
  * @author Marcos
  */
-public class Tam_JDlgConsultaProdutos extends javax.swing.JDialog {
+public class Tam_JDlgConsultaVendedores extends javax.swing.JDialog {
 
-    Tam_ControllerConsultasProdutos controllerConsultasProdutos;
-    ProdutosDAO produtosDAOdutos;
+    Tam_ControllerConsultasVendedor controllerConsultasVendor;
+    VendedorDAO vendorDAO;
 
-    public Tam_JDlgConsultaProdutos(java.awt.Frame parent, boolean modal) {
+    public Tam_JDlgConsultaVendedores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Pesquisar Produtos");
-        controllerConsultasProdutos = new Tam_ControllerConsultasProdutos();
-        produtosDAOdutos = new ProdutosDAO();
-        List lista = (List) produtosDAOdutos.listAll();
-        controllerConsultasProdutos.setList(lista);
-        jTable1.setModel(controllerConsultasProdutos);
+        setTitle("Pesquisar Vendedor");
+        controllerConsultasVendor = new Tam_ControllerConsultasVendedor();
+        vendorDAO = new VendedorDAO();
+        List lista = (List) vendorDAO.listAll();
+        controllerConsultasVendor.setList(lista);
+        jTable1.setModel(controllerConsultasVendor);
     }
 
     /**
@@ -76,7 +77,7 @@ public class Tam_JDlgConsultaProdutos extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
-        jLabel2.setText("Valor Maior que ");
+        jLabel2.setText("Número");
 
         jBtnConsulta.setText("Conusultar");
         jBtnConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -151,18 +152,18 @@ public class Tam_JDlgConsultaProdutos extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (jTxtNome.getText().isEmpty() == false && jTxtValor.getText().isEmpty() == false) {
 
-            List lista = (List) produtosDAOdutos.listNomeValor(jTxtNome.getText(), Tam_Util.strToDouble(jTxtValor.getText()));
-            controllerConsultasProdutos.setList(lista);
+            List lista = (List) vendorDAO.listNomeNumero(jTxtNome.getText(), jTxtValor.getText());
+            controllerConsultasVendor.setList(lista);
 
         } else if (jTxtValor.getText().isEmpty() == false) {
-            List lista = (List) produtosDAOdutos.listValor(Tam_Util.strToDouble(jTxtValor.getText()));
-            controllerConsultasProdutos.setList(lista);
+            List lista = (List) vendorDAO.listNumero(jTxtValor.getText());
+            controllerConsultasVendor.setList(lista);
         } else if (jTxtNome.getText().isEmpty() == false) {
-            List lista = (List) produtosDAOdutos.listNome(jTxtNome.getText());
-            controllerConsultasProdutos.setList(lista);
+            List lista = (List) vendorDAO.listNome(jTxtNome.getText());
+            controllerConsultasVendor.setList(lista);
         } else {
-            List lista = (List) produtosDAOdutos.listAll();
-            controllerConsultasProdutos.setList(lista);
+            List lista = (List) vendorDAO.listAll();
+            controllerConsultasVendor.setList(lista);
         }
     }//GEN-LAST:event_jBtnConsultaActionPerformed
 
@@ -183,14 +184,30 @@ public class Tam_JDlgConsultaProdutos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tam_JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tam_JDlgConsultaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tam_JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tam_JDlgConsultaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tam_JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tam_JDlgConsultaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tam_JDlgConsultaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tam_JDlgConsultaVendedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -211,7 +228,7 @@ public class Tam_JDlgConsultaProdutos extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Tam_JDlgConsultaProdutos dialog = new Tam_JDlgConsultaProdutos(new javax.swing.JFrame(), true);
+                Tam_JDlgConsultaVendedores dialog = new Tam_JDlgConsultaVendedores(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

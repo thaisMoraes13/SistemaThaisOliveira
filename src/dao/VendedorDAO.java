@@ -5,6 +5,7 @@
  */
 package dao;
 
+import bean.ClienteTam;
 import bean.VendedorTam;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -46,6 +47,35 @@ public class VendedorDAO extends AbstractDAO {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(VendedorTam.class);
         criteria.add(Restrictions.eq("idvendedor_tam", id));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendedorTam.class);
+        criteria.add(Restrictions.like("nomeTam", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNumero(String VU) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendedorTam.class);
+        criteria.add(Restrictions.like("celularTam", "%" + VU + "%"));
+
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNomeNumero(String nome, String VU) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendedorTam.class);
+        criteria.add(Restrictions.like("nomeTam", "%" + nome + "%"));
+        criteria.add(Restrictions.like("celularTam", "%" + VU + "%"));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

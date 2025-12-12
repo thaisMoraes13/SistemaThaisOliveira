@@ -30,7 +30,7 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Component id="jTxtLogin" max="32767" attributes="0"/>
                   <Component id="jBtnOK" pref="120" max="32767" attributes="0"/>
-                  <Component id="jTxtSenha" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPwfSenha" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="152" max="32767" attributes="0"/>
           </Group>
@@ -46,8 +46,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTxtSenha" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jPwfSenha" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jBtnOK" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
@@ -56,14 +56,14 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTxtLogin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="   "/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnOK">
       <Properties>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnOKActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -75,10 +75,7 @@
         <Property name="text" type="java.lang.String" value="Senha"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtSenha">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtSenhaActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JPasswordField" name="jPwfSenha">
     </Component>
   </SubComponents>
 </Form>
