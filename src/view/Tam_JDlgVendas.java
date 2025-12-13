@@ -511,7 +511,10 @@ public class Tam_JDlgVendas extends javax.swing.JDialog {
                 
                 jBtnTam_Cancelar,
                 jBtnTam_Pesquisar,
-                jBtnTam_Incluir
+                jBtnTam_Incluir,
+                jBtnTam_AlterarProd,
+                jBtnTam_ExcluirProd,
+                jBtnTam_IncluirProd
         );
 
         Tam_Util.habilitar(true,
